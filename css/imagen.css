@@ -1,0 +1,8 @@
+.conimagen{
+    transition: width 2s,height 2s;
+}
+
+#conimg:hover{
+    width: 2px;
+    height: 2px;
+}
