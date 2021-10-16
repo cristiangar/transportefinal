@@ -60,7 +60,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-6"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="tipo_empleado.php">
+                    <a href="tipo_empleado/lista_tipo_empleado.php">
                     <img class="img-fluid" src="../../imagenes/tipoempleado.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
                     </a>
                     <h1>Tipo de Empleado</h1>
