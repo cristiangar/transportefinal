@@ -48,7 +48,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-6"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="tipo_usuario.php">
+                    <a href="lista_tipo_usuario.php">
                         <img class="conimagen" id="conimg"src="../imagenes/tipousuario.jpeg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
                     </a>
                     <h1>Tipo de Usuario</h1>
