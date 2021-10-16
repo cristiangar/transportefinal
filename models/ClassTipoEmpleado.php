@@ -21,7 +21,7 @@ class tipo
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/Motro/tipo_empleado/lista_tipo_empleado.php" </script>';
+						self.location="../views/lista_tipo_empleado.php" </script>';
 
 
 	}
@@ -42,7 +42,7 @@ class tipo
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_tipo_empledo($id,'0','S1', @pn_respuesta);";
+		$consulta= "call sp_tipo_empleado($id, '0', 'S1', @pn_respuesta)";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
@@ -53,7 +53,7 @@ class tipo
 
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_tipo_empledo($id, '0','D', @pn_respuesta);";
+		$consulta= "call sp_tipo_empleado($id, '0', 'D', @pn_respuesta)";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -66,7 +66,7 @@ class tipo
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/tipo_empleado.php" </script>';
+						self.location="../views/lista_tipo_empleado.php" </script>';
 
 	}
 
@@ -76,7 +76,7 @@ class tipo
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_tipo_empledo($id, '$cargo', 'U', @pn_respuesta);";
+		$consulta= "call sp_tipo_empleado($id, '$cargo', 'U', @pn_respuesta)";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -89,7 +89,7 @@ class tipo
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/tipo_empleado.php" </script>';
+						self.location="../views/lista_tipo_empleado.php" </script>';
 
 
 	}
