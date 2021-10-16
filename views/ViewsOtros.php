@@ -13,8 +13,8 @@ if(isset($_SESSION['usuario']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/login.css">
-    <link rel="stylesheet" href="../../css/imagen.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/imagen.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -23,14 +23,14 @@ if(isset($_SESSION['usuario']))
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
     <a href="secritaria.php">
-        <img src="../../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
+        <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
     </a>
     <ul class="navbar-nav ml-auto">
         <li class="navbar-item">
-            <a class="nav-link" ><?echo $us;?></a>
+            <a class="nav-link" ><?php echo $us;?></a>
         </li>
         <li class="navbar-item">
-            <a class="nav-link" href="../index.php">Cerrar sesión</a>
+            <a class="nav-link" href="../index.php"> Cerrar sesión</a>
         </li>
     </ul>
 
@@ -48,8 +48,8 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-6"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="tipo_usuario.php">
-                        <img class="conimagen" id="conimg"src="../../imagenes/tipousuario.jpeg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
+                    <a href="lista_tipo_usuario.php">
+                        <img class="conimagen" id="conimg"src="../imagenes/tipousuario.jpeg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
                     </a>
                     <h1>Tipo de Usuario</h1>
                 </div>
@@ -61,7 +61,7 @@ if(isset($_SESSION['usuario']))
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
                     <a href="tipo_empleado/lista_tipo_empleado.php">
-                    <img class="img-fluid" src="../../imagenes/tipoempleado.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
+                    <img class="img-fluid" src="../imagenes/tipoempleado.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
                     </a>
                     <h1>Tipo de Empleado</h1>
                 </div>
