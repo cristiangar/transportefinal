@@ -22,15 +22,19 @@ if(isset($_SESSION['usuario']))
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+<<<<<<< HEAD
     <a href="ViewAdministrador.php">
+=======
+    <a href="secritaria.php">
+>>>>>>> 8991e2d8d9126d5e9d4fa2cfa10e74109efea498
         <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
     </a>
     <ul class="navbar-nav ml-auto">
         <li class="navbar-item">
-            <a class="nav-link" ><?echo $us;?></a>
+            <a class="nav-link" ><?php echo $us;?></a>
         </li>
         <li class="navbar-item">
-            <a class="nav-link" href="../index.php">Cerrar sesión</a>
+            <a class="nav-link" href="../index.php"> Cerrar sesión</a>
         </li>
     </ul>
 
@@ -48,7 +52,11 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-6"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
+<<<<<<< HEAD
                     <a href="tipo_usuario.php">
+=======
+                    <a href="lista_tipo_usuario.php">
+>>>>>>> 8991e2d8d9126d5e9d4fa2cfa10e74109efea498
                         <img class="conimagen" id="conimg"src="../imagenes/tipousuario.jpeg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
                     </a>
                     <h1>Tipo de Usuario</h1>
@@ -60,7 +68,11 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-6"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
+<<<<<<< HEAD
                     <a href="lista_tipo_empleado.php">
+=======
+                    <a href="tipo_empleado/lista_tipo_empleado.php">
+>>>>>>> 8991e2d8d9126d5e9d4fa2cfa10e74109efea498
                     <img class="img-fluid" src="../imagenes/tipoempleado.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
                     </a>
                     <h1>Tipo de Empleado</h1>
