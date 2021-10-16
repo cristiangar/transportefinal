@@ -33,6 +33,7 @@ class login
         $res3=mysqli_fetch_array($consultar3);
         $texto3=$res3['@pn_id'];
         $_SESSION['idusuario']=$texto3;
+        
         if($texto=="ERROR")
         {
          header("Location: ../../Index.php?error");
@@ -42,23 +43,8 @@ class login
          
         }
         else{
-            $t_rol=$_SESSION['rol'];
-            if(($t_rol=="Piloto") or ($t_rol=="piloto") or ($t_rol=="PILOTO"))
-            {
-                $_SESSION['usuario'];
-                $_SESSION['rol'];
-                $_SESSION['idusuario'];
-                header("Location: ../../views/Mpiloto/ViewPiloto.php");
-                //echo "hola piloto";
-            }
-            else{
-                $_SESSION['usuario'];
-                $_SESSION['rol'];
-                $_SESSION['idusuario'];
-               header("Location: ../../views/Motro/ViewAdministrador.php");
-               //echo "hola quien sea";
-            }
-
+           header("Location: ../../views/ViewAdministrador.php");
+            $una= $_SESSION['rol'];
         }
 
 	}	

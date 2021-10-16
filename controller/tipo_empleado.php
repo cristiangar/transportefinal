@@ -1,6 +1,6 @@
 <?php
-include_once("../../models/ClassTipoEmpleado.php");
-
+ob_flush();
+include_once("../models/ClassTipoEmpleado.php");
 if (isset($_GET['id']))
 {
     
@@ -25,10 +25,9 @@ if (isset($_GET['id']))
 else
 {
     if(isset($_POST ['cargo'])){
-
         $cargo=$_POST['cargo'];
         $au =new tipo();
-        $au->IngresarTipoEmpleado($cargo);  
+        $au->IngresarTipoEmpleado($cargo);
 
     }
     else

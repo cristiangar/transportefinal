@@ -38,26 +38,25 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../controller/tipo_empleado.php");
+  include_once("../../../controller/tipo_empleado.php");
   $resultado=$dt->num_rows;
   if($resultado>0){
     ?>
       <h1>Tipos de Empleados</h1>
       <br>
       <div class="container mt-3">
-      <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
 
             <thead>
-              <center><td>Cargo</td></center>
+              <center><td>tipo empleado</td></center>
               <center><td>Modificar</td></center>
               <center><td>Eliminar</td></center>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
-            $id=$row['id_tipo_empleado'];
-            $cargo=$row['cargo'];
+            $id=$row['id_tipo_piloto'];
+            $cargo=$row['tipo'];
             
             ?>
                   <tbody id="myTable">
@@ -75,7 +74,7 @@ if(isset($_SESSION['usuario']))
                 echo '</table>';
             ?>
             <center>
-                 <a href="nuevo_tipo_empleado.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
+                 <a href="agregar_nuevo.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
                 
                 <a href="otros.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 

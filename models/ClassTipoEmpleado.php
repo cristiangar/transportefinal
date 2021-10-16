@@ -1,6 +1,6 @@
 <?php 
 ob_start();
-include ('../../configuracion/config.php');
+include ('../configuracion/config.php');
 class tipo
 {
 
@@ -8,7 +8,7 @@ class tipo
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_tipo_empledo(0, '$cargo', 'I', @pn_respuesta);";
+		$consulta= "call sp_tipo_empleado(0, '$cargo', 'I', @pn_respuesta)";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -21,7 +21,7 @@ class tipo
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/tipo_empleado.php" </script>';
+						self.location="../views/Motro/tipo_empleado/lista_tipo_empleado.php" </script>';
 
 
 	}
