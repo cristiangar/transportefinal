@@ -250,7 +250,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="../serviciovehiculos/listavehiculos.php">
+                    <a href="../mantenimientovehiculos/lista_vehiculos.php">
                     <img class="img-fluid" src="../imagenes/serviciocarro.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
                     </a>
                     <h1>Servicio de Vehiculos</h1>

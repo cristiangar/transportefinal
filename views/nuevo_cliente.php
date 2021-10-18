@@ -23,8 +23,8 @@ if(isset($_SESSION['usuario']))
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <a href="secritaria.php">
-        <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
+    <a href="ViewAdministrador.php">
+        <img src="../imagenes/logo.png" alt="Transporte" style="width:52px;height:52px;">
     </a>
     <ul class="navbar-nav ml-auto">
         <li class="navbar-item">
