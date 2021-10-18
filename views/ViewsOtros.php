@@ -45,7 +45,7 @@ if(isset($_SESSION['usuario']))
     <div class="row">
 
         
-        <div class="wrapper fadeInDown col-sm-6"><!--efecto de caida-->
+        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
                     <a href="lista_tipo_usuario.php">
@@ -57,13 +57,25 @@ if(isset($_SESSION['usuario']))
         </div>
 
 
-        <div class="wrapper fadeInDown col-sm-6"><!--efecto de caida-->
+        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
                     <a href="lista_tipo_empleado.php">
                     <img class="img-fluid" src="../imagenes/tipoempleado.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
                     </a>
                     <h1>Tipo de Empleado</h1>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
+            <div id="formContent"><!--contenedor-->
+                <div class="fadeIn first">
+                    <a href="lista_tipo_moneda.php">
+                    <img class="img-fluid" src="../imagenes/moneda.jpg" id="icon" alt="User Icon" style="max-width:45%;width:auto;height:auto;">
+                    </a>
+                    <h1>Tipo de Moneda</h1>
                 </div>
             </div>
         </div>
