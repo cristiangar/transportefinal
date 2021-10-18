@@ -113,7 +113,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="receptor.php">
+                    <a href="lista_receptor.php">
                     <img class="img-fluid" src="../imagenes/receptor.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
                     </a>
                     <h1>Receptor</h1>

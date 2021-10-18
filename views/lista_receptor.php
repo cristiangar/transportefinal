@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rutas</title>
+    <title>Receptor</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,38 +36,38 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../controller/rutas.php");
+  include_once("../controller/receptor.php");
   $resultado=$dt->num_rows;
   if($resultado>0){
     ?>
-      <h1>Lista de Rutas</h1>
+      <h1>Lista de Receptores</h1>
       <br>
       <div class="container mt-3">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm" border="1" id="tabla_paginada">
             <thead>
-              <td>Codigo</td>
-              <td>Origen</td>
-              <td>Destino</td>
+              <td>Nombre</td>
+              <td>telefono 1</td>
+              <td>telefono 2</td>
               <td>Modificar</td>
               <td>Eliminar</td>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
-            $id=$row['id_rutas'];
-            $origen=$row['origen'];
-            $destino=$row['destino'];
-            $cod=$row['codigo'];
+            $id=$row['id_receptor'];
+            $nombre=$row['nombre'];
+            $telefono1=$row['telefono_1'];
+            $telefono2=$row['telefono_2'];
 
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $cod?></td>
-                    <td><?php echo $origen?></td>
-                    <td><?php echo $destino?></td>
-                    <td><center><a href="agregar_ruta.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><center><a href="../controller/rutas.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
+                    <td><?php echo $nombre?></td>
+                    <td><?php echo $telefono1?></td>
+                    <td><?php echo $telefono2?></td>
+                    <td><center><a href="agregar_receptor.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
+                    <td><center><a href="../controller/receptor.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
@@ -83,7 +83,7 @@ if(isset($_SESSION['usuario']))
                 echo '</table>';
                 ?>
             <center>
-                 <a href="agregar_ruta.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
+                 <a href="agregar_receptor.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
                 
                 <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 
@@ -101,7 +101,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
-      <a href="agregar_ruta.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
+      <a href="agregar_receptor.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
     </center>
     <?php
   }
