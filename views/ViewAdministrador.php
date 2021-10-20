@@ -102,7 +102,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="choferes.php">
+                    <a href="lista_piloto.php">
                         <img class="img-fluid" src="../imagenes/chofer.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">    
                     </a>
                     <h1>Pilotos</h1>
@@ -206,7 +206,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="personal.php">
+                    <a href="lista_empleados.php">
                     <img class="img-fluid" src="../imagenes/personal.png" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
                     </a>
                     <h1>Personal</h1>

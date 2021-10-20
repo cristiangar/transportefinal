@@ -1,4 +1,4 @@
-﻿var resultados_por_pagina = 4;
+﻿var resultados_por_pagina = 5;
 var pagina_actual = 1;
 var pagina_ultima = 0;
 $(window).ready(function(){
