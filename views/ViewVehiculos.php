@@ -48,7 +48,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-6"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="lista_furgon.php?P">
+                    <a href="lista_caja.php">
                         <img class="conimagen" id="conimg"src="../imagenes/plataforma2.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
                     </a>
                     <h1>Furgón / Plataforma / Caja Seca</h1>
@@ -72,7 +72,7 @@ if(isset($_SESSION['usuario']))
                 <br>
             <center>
                
-                <a href="secritaria.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+                <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
                 
             </center>
             </div>
