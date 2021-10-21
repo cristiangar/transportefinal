@@ -28,7 +28,7 @@ if(isset($_SESSION['usuario']))
         </a>
     <ul class="navbar-nav ml-auto">
         <li class="navbar-item">
-            <a class="nav-link" > <?php $us;?></a>
+            <a class="nav-link" > <?php echo $us;?></a>
         </li>
         <li class="navbar-item">
             <a class="nav-link" href="../index.php">Cerrar sesión</a>

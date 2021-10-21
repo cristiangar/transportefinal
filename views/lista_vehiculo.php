@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Personal</title>
+    <title>Vehiculos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,45 +38,67 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../controller/piloto.php");
+  include_once("../controller/vehiculo.php");
   $resultado=$dt->num_rows;
   if($resultado>0){
     ?>
-      <h1>Lista de pilotos</h1>
+      <h1>Lista de vehiculos</h1>
       <br>
       <div class="container-fluid">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
-              <td>Nombre</td>
-              <td>Telefono</td>
-              <td>whatsapp</td>
-              <td>contacto de emergencia</td>
-              <td>numero de emergencia</td>
+              <td>No. placa</td>
+              <td>Marca</td>
+              <td>Codigo aduanero</td>
+              <td>Codigo transporte</td>
+              <td>Caat</td>
+              <td>Estado</td>
               <td>Detalle</td>
               <td>Modificar</td>
               <td>Eliminar</td>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
-            $id=$row['id_piloto'];
-            $nombre=$row['nombre'];
-            $telefono=$row['telefono'];
-            $whatsapp=$row['whatsapp'];
-            $contacto_emergencia=$row['contacto_emergencia'];
-            $numero_emergencia=$row['numero_emergencia'];
+            $id=$row['id_vehiculo'];
+            $placa=$row['no_placa'];
+            $marca=$row['marca'];
+            $modelo=$row['modelo'];
+            $tonelaje=$row['tonelaje'];
+            $ejes=$row['ejes'];
+            $color=$row['color'];
+            $tipo=$row['tipo_vehiculo'];
+            $imagen_tarjeta=$row['imagen_targeta_circulacion'];
+            $cod_aduanero=$row['codigo_aduanero'];
+            $cod_transporte=$row['codigo_transporte'];
+            $caat=$row['numero_caat'];
+            $documento_caat=$row['documento_caat'];
+            $estado=$row['estado'];
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $nombre?></td>
-                    <td><?php echo $telefono?></td>
-                    <td><?php echo $whatsapp?></td>
-                    <td><?php echo $contacto_emergencia?></td>
-                    <td><?php echo $numero_emergencia?></td>
-                    <td><center><a href="detalle_piloto.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
-                    <td><center><a href="agregar_piloto.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><center><a href="../controller/piloto.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
+                    <td><?php echo $placa?></td>
+                    <td><?php echo $marca?></td>
+                    <td><?php echo $cod_aduanero?></td>
+                    <td><?php echo $cod_transporte?></td>
+                    <td><?php echo $caat?></td>
+                    <?php
+                        if($estado==1){
+                            ?>
+                            <td><span class="badge badge-success">Disponible</span></td>
+                            <?php
+                        }
+                        else
+                        {
+                            ?>
+                            <td><span class="badge badge-success">Ocupado</span></td>
+                            <?php
+                        }
+                    ?>
+                    <td><center><a href="detalle_vehiculo.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
+                    <td><center><a href="agregar_vehiculo.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
+                    <td><center><a href="../controller/vehiculo.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
@@ -93,7 +115,7 @@ if(isset($_SESSION['usuario']))
 
                 ?>
                 <center>
-                    <a href="agregar_piloto.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
+                    <a href="agregar_vehiculo.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
                     <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 </center>
                 <?php
@@ -108,7 +130,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
-      <a href="agregar_piloto.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
+      <a href="agregar_vehiculo.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
       <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
