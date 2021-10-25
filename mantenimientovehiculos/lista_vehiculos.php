@@ -86,7 +86,7 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $modelo;?></td>
                                         
                     <td><center><a href="nuevo_vehiculo_mantenimiento.php?id=<?php echo $id?>"><button type="button" class="btn btn-primary">Modificar</button></a></center></td>
-                    <td><center><a href="detalle_vehiculo_matenimiento.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Ver Mantenimientos</button></a></center></td>
+                    <td><center><a href="lista_mantenimiento.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Ver Mantenimientos</button></a></center></td>
                     <td><center><a href="../controller/vehiculos_mantenimiento.php?id=<?php echo $id?>&es"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
                     </tr>
                     <?php
