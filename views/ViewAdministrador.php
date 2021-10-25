@@ -46,7 +46,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                        <a href="../envio/datos.php">
+                        <a href="../envio/agregar_envio.php">
                         <img class="conimagen" id="conimg"src="../imagenes/generar.png" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
                     </a>
                     <h1>Generar Viaje</h1>
