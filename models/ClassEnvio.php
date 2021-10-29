@@ -1,15 +1,16 @@
 <?php 
 ob_start();
+session_start();
 include ('../configuracion/config.php');
 class envio
 {
 
-	public function Ingresar($placa,$marca,$modelo,$ejes,$tamanio,$color,$economico,$caat,$pimagencaat,$tipo,$ruta_tarjeta,$flotilla)
+	public function Ingresar($referencia1,$referencia2,$descripcion,$codigo_envio,$ruta,$cliente,$vehiculo,$caja,$piloto,$usuario,$receptor)
 	{
 		$bd = new datos();
 		$bd->conectar();
 
-		$consulta= "call sp_caja_seca(0, '$placa', '$marca', $modelo, $ejes, '$tamanio', '$color', $economico, '$caat', '$pimagencaat', '$tipo', '$ruta_tarjeta', $flotilla, 'I', @pn_respuesta);";
+		$consulta= "call sp_envio('$referencia1','$referencia2','$descripcion',0,'$codigo_envio',$ruta,$cliente,$vehiculo,$caja,$piloto,$usuario,$receptor, 'I', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -18,11 +19,25 @@ class envio
 		$bd->desconectar();
 
 		$res=mysqli_fetch_array($consultar);
+		if($caja=='0'){
+			unset($_SESSION['idcliente']);
+			unset($_SESSION['idreceptor']);
+			unset($_SESSION['idpiloto']);
+			unset($_SESSION['idvehiculo']);
+		}
+		else{
+			unset($_SESSION['idcliente']);
+			unset($_SESSION['idreceptor']);
+			unset($_SESSION['idpiloto']);
+			unset($_SESSION['idvehiculo']);
+			unset($_SESSION['idplataforma']);
+		}
 		//
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/lista_caja.php" </script>';
+						self.location="../views/listaviajes.php" </script>';
+						
 
 
 
@@ -33,7 +48,7 @@ class envio
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_caja_seca(0, '0', '0', 0, 0, '0', '0', 0, '0', '0', '0', '0', 0, 'S', @pn_respuesta);";
+		$consulta= "call sp_envio('0', '0', '0', 0, '0', 0, 0, 0, 0, 0, 0, 0, 'S', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
@@ -45,7 +60,7 @@ class envio
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_caja_seca($id, '0', '0', 0, 0, '0', '0', 0, '0', '0', '0', '0', 0, 'S1', @pn_respuesta);";
+		$consulta= "call sp_envio('0', '0', '0', $id, '0', 0, 0, 0, 0, 0, 0, 0, 'S1', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;

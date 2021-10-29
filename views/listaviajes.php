@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once("../controller/envio.php");
 if(isset($_SESSION['usuario']))
 {
     $rol=$_SESSION['rol'];
@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Clientes</title>
+    <title>Viajes</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,11 +24,11 @@ if(isset($_SESSION['usuario']))
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
         <a href="ViewAdministrador.php">
-        <img src="../imagenes/logo.png" alt="Transporte" style="width:52px;height:52px;">
+        <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
         </a>
     <ul class="navbar-nav ml-auto">
         <li class="navbar-item">
-            <a class="nav-link" ><?php echo $us;?></a>
+            <a class="nav-link" > <?php echo $us;?></a>
         </li>
         <li class="navbar-item">
             <a class="nav-link" href="../index.php">Cerrar sesión</a>
@@ -38,49 +38,42 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../controller/cliente.php");
-  $resultado=$dt2->num_rows;
+  $resultado=$dt->num_rows;
   if($resultado>0){
     ?>
-      <h1>Lista de Clientes</h1>
+      <h1>Lista de Viajes</h1>
       <br>
       <div class="container mt-3">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
-              <td>Empresa</td>
-              <td>Telefono 1</td>
-              <td>Teléfono 2</td>
-              <td>Contacto 1</td>
-              <td>Contacto 2</td>
-              <td>Correo</td>
-              <td>Nit</td>
-              <td> Modificar</td>
+              <td>Codigo envio</td>
+              <td>Fecha envio</td>
+              <td>Cliente</td>
+              <td>Telefono cliente</td>
+              <td>Estado envio</td>
+              <td>Detalle del envio</td>
               <td>Eliminar</td>
             </thead>
       <?php
-          while ($row=mysqli_fetch_array($dt2)) {
-            $id=$row['id_clientes'];
-            $nombre=$row['empresa'];
-            $telefono=$row['telefono_1'];
-            $telefono2=$row['telefono_2'];
-            $contacto1=$row['contacto_1'];
-            $contacto2=$row['contacto_2'];
-            $correo=$row['correo'];
-            $nit=$row['nit'];
+          while ($row=mysqli_fetch_array($dt)) {
+            $id=$row['id_envio'];
+            $codigo=$row['codigo_envio'];
+            $fecha=$row['fecha_envio'];
+            $cliente=$row['empresa'];
+            $telefono=$row['tel'];
+            $estado=$row['estado_envio'];
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $nombre?></td>
+                    <td><?php echo $codigo?></td>
+                    <td><?php echo $fecha?></td>
+                    <td><?php echo $cliente?></td>
                     <td><?php echo $telefono?></td>
-                    <td><?php echo $telefono2?></td>
-                    <td><?php echo $contacto1?></td>
-                    <td><?php echo $contacto2?></td>
-                    <td><?php echo $correo?></td>
-                    <td><?php echo $nit?></td>
-                    <td><center><a href="nuevo_cliente.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><center><a href="../controller/cliente.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
+                    <td><?php echo $estado?></td>
+                    <td><center><a href="detalle_viaje.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
+                    <td><center><a href="../controller/empleado.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
@@ -94,15 +87,13 @@ if(isset($_SESSION['usuario']))
                 echo  '<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>';
                 echo'</tfoot>';
                 echo '</table>';
+
                 ?>
-            <center>
-                 <a href="nuevo_cliente.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
-                
-                <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
-                
-                
-            </center>
-            <?php
+                <center>
+                    <a href="../envio/agregar_envio.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
+                    <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
+                </center>
+                <?php
   }
   else{
     ?> 
@@ -114,8 +105,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
-      <br>
-      <a href="nuevo_cliente.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
+      <a href="../envio/agregar_envio.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
       <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
