@@ -23,7 +23,7 @@ if(isset($_SESSION['usuario']))
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <a href="../views/ViewAdministrador.php">
+    <a href="ViewAdministrador.php">
         <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
     </a>
     <ul class="navbar-nav ml-auto">
@@ -39,10 +39,11 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-if(isset($_GET['id'])){
+if(isset($_GET['id']) and isset($_GET['detalle']) ){
     /**detalle envio */
     while ($row=mysqli_fetch_array($dt)) {
         $codigo=$row['codigo_envio'];
+        $fecha=$row['fecha_envio'];
         $cliente=$row['empresa'];
         $receptor=$row['nombre'];
         $referencia1=$row['referencia_1'];
@@ -53,16 +54,31 @@ if(isset($_GET['id'])){
         $descripcion=$row['descripcion'];
         $vehiculo=$row['tipo_vehiculo'];
         $piloto=$row['npiloto'];
+        $placa=$row['no_placa'];
+        if(($vehiculo=="Cabezal") or ($vehiculo=="cabezal"))
+        {
+            $plataforma=$row['tipo'];
+            $placa_plataforma=$row['placa'];
+        }
+        else
+        {
+            $plataforma="N/A";
+            $placa_plataforma="N/A";
+        }
     }
     ?>
         
     <h1>Datos del envio</h1>
       <br>
       <div class="form-row">
+        <div class="input-group mb-3">
+            <h3>Fecha de Creación: <?php echo $fecha;?></h3>
+        </div>
         <div class="col-sm-4">
           <label>Codigo envio</label>
           <input value=<?php echo $codigo;?> type="text" name="cod" class="form-control" placeholder="codigo envio"readonly>
         </div>
+
       </div>
       <br>           
       <h1>Datos del cliente y receptor</h1>
@@ -125,31 +141,28 @@ if(isset($_GET['id'])){
       <br>
       <div class="form-row">
                <div class="col-sm-4">
-                  <div class="input-group mb-3">
+                    <label>Vehiculo</label> 
                     <input value=<?php echo $vehiculo;?>  type="text" class="form-control" placeholder="Vehiculo" id="pagina3" name="Vehiculo"readonly>
-                    <div class="input-group-append">
-                      <button class="input-group-text btn-btn-primary" id="boton3">Vehiculo1</button>
-                    </div>
-                  </div>
                 </div>
+                <div class="col-sm-4">
+                    <label>No. placa</label>
+                    <input value=<?php echo $placa;?> type="text" name="" class="form-control" placeholder="codigo ruta"readonly>
+                </div>
+                <div class="col-sm-4">
+                    <label for="">Piloto</label>
+                    <input value=<?php echo $piloto;?> type="text" class="form-control" placeholder="Piloto" id="pagina5" name="Piloto"readonly>
+                </div>   
 
                 <div class="col-sm-4">
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Plataforma" id="pagina4" name="Plataforma" value="N/A"readonly>
-                    <div class="input-group-append">
-                      <button id="boton4" class="input-group-text btn-btn-primary">Plataforma</button>
-                    </div>
-                  </div>
+                    <label for="">Plataforma</label>
+                    <input type="text" class="form-control" placeholder="Plataforma" id="pagina4" name="Plataforma" value=<?php echo $plataforma;?> readonly>
                 </div>
                 <div class="col-sm-4">
-                  <div class="input-group mb-3">
-                    <input value=<?php echo $piloto;?> type="text" class="form-control" placeholder="Piloto" id="pagina5" name="Piloto"readonly>
-                    <div class="input-group-append">
-                      <button id="boton5" class="input-group-text btn-btn-primary">Piloto</button>
-                    </div>
-                  </div>
+                    <label for="">No. placa de la plataforma</label>
+                    <input type="text" class="form-control" placeholder="Plataforma" id="pagina4" name="Plataforma" value=<?php echo $placa_plataforma;?> readonly>
                 </div>
-                
+
+          
       </div>
       <br>
       <div class="container-fluid col-sm-5">
@@ -158,7 +171,7 @@ if(isset($_GET['id'])){
             <center>
           
                 <a href="../views/listaviajes.php"><button type="button" class="btn btn-success" >Regresar</button></a>
-                <a href="../views/ViewAdministrador.php"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                <a href="../views/detalle_viaje.php?id=<?php echo $_GET['id']?>"><button type="button" class="btn btn-warning" >Modificar</button></a>
 
                 
             </center>
@@ -168,15 +181,52 @@ if(isset($_GET['id'])){
     <?php
 }
 else{
+    /**modificar envio */
+    while ($row=mysqli_fetch_array($dt)) {
+        $id_envio=$row['id_envio'];
+        $codigo=$row['codigo_envio'];
+        $fecha=$row['fecha_envio'];
+        $id_cliente=$row['id_clientes'];
+        $cliente=$row['empresa'];
+        $id_receptor=$row['id_receptor'];
+        $receptor=$row['nombre'];
+        $id_paquete=$row['id_paquete'];
+        $referencia1=$row['referencia_1'];
+        $referencia2=$row['referencia_2'];
+        $id_ruta=$row['id_rutas'];
+        $cod_ruta=$row['codigo_ruta'];
+        $origen=$row['origen'];
+        $destino=$row['destino'];
+        $descripcion=$row['descripcion'];
+        $id_vehiculo=$row['id_vehiculo'];
+        $vehiculo=$row['tipo_vehiculo'];
+        $id_piloto=$row['id_piloto'];
+        $piloto=$row['npiloto'];
+        $placa=$row['no_placa'];
+        if(($vehiculo=="Cabezal") or ($vehiculo=="cabezal"))
+        {
+            $id_plataforma=$row['id_caja_seca'];
+            $plataforma=$row['tipo'];
+            $placa_plataforma=$row['placa'];
+
+        }
+        else
+        {
+            $id_plataforma="0";
+            $plataforma="N/A";
+            $placa_plataforma="N/A";
+        }
+    }
     ?>
-     <form method="POST" action="../controller/envio.php" enctype="multipart/form-data">
+     <form method="POST" action="../controller/envio.php?id=<?php echo $id_envio?>&mod" enctype="multipart/form-data">
         
       <h1>Datos del envio</h1>
       <br>
       <div class="form-row">
         <div class="col-sm-4">
           <label>Codigo envio</label>
-          <input type="text" name="cod" class="form-control" placeholder="codigo envio"require>
+          <input value="<?php echo $id_envio;?>" type="text" name="id_envio" class="form-control"hidden>
+          <input value="<?php echo $codigo;?>" type="text" name="cod" class="form-control" placeholder="codigo envio"require>
         </div>
       </div>
       <br>
@@ -186,7 +236,8 @@ else{
        <div class="form-row">
             <div class="col-sm-4">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Cliente" id="pagina1" return false; name="Cliente">
+                    <input value="<?php echo $id_cliente;?>" type="text" name="id_cliente" hidden>
+                    <input value="<?php echo $cliente;?>" type="text" class="form-control" placeholder="cliente" id="pagina1" return false; name="Cliente">
                     <div class="input-group-append">
                         <button class="input-group-text btn-btn-primary" id="boton1">Cliente</button>
                     </div>
@@ -195,7 +246,8 @@ else{
 
                 <div class="col-sm-4">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Receptor" id="pagina2" name="Receptor">
+                        <input value="<?php echo $id_receptor;?>" type="text" name="id_receptor" hidden>
+                        <input value="<?php echo $receptor;?>" type="text" class="form-control" placeholder="Receptor" id="pagina2" name="Receptor">
                             <div class="input-group-append">
                                 <button  class="input-group-text btn-btn-primary" id="boton2" return false;>Receptor</button>
                             </div>
@@ -208,13 +260,14 @@ else{
       <br>
 
       <div class="form-row">
+          <input type="text" name="id_paquete" value="<?php echo $id_paquete;?>"hidden>
             <div class="col-sm-4">
             <label>Refecrencia 1</label>
-                <input type="text" name="direccion" class="form-control" placeholder="Referencia" require>
+                <input value="<?php echo $referencia1;?>" type="text" name="direccion" class="form-control" placeholder="Referencia" require>
             </div>
             <div class="col-sm-4">
             <label>Referencia 2</label>
-                <input type="text" name="direccionenvio" class="form-control" placeholder="Referencia">
+                <input value="<?php echo $referencia2;?>" type="text" name="direccionenvio" class="form-control" placeholder="Referencia">
             </div>
             <?php 
             
@@ -224,6 +277,7 @@ else{
             <div class="col-sm-4">
                 <label>Ruta</label>
                 <select name="id_ruta" id="" class="form-control">
+                    <option value="<?php echo $id_ruta?>"><?php echo $origen.'-'.$destino;?></option>
                 <?php
                 while($row=mysqli_fetch_array($dt2)){
                     $valor=$row['id_rutas'];
@@ -236,7 +290,7 @@ else{
             <div class="col-sm-4">
                 <label>Descripción</label>
                 <br>
-                <textarea value='N/A' calss='form-control' name="descripcion" id="" cols="110" rows="3"></textarea>
+                <textarea  calss='form-control' name="descripcion" id="" cols="110" rows="3"><?php echo $descripcion;?></textarea>
             </div>
       </div>
         <br>
@@ -245,7 +299,8 @@ else{
       <div class="form-row">
                <div class="col-sm-4">
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Vehiculo" id="pagina3" name="Vehiculo">
+                      <input type="text" name="id_vehiculo" value="<?php echo $id_vehiculo;?>"hidden>
+                    <input value="<?php echo $vehiculo." "."No.placa: ".$placa?>" type="text" class="form-control" placeholder="Vehiculo" id="pagina3" name="Vehiculo">
                     <div class="input-group-append">
                       <button class="input-group-text btn-btn-primary" id="boton3">Vehiculo1</button>
                     </div>
@@ -254,7 +309,8 @@ else{
 
                 <div class="col-sm-4">
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Plataforma" id="pagina4" name="Plataforma" value="N/A">
+                    <input type="text" name="id_vehiculo" value="<?php echo $id_plataforma;?>"hidden>   
+                    <input value="<?php echo $plataforma." "."No. Placa: ".$placa_plataforma;?>" type="text" class="form-control" placeholder="Plataforma" id="pagina4" name="Plataforma" value="N/A">
                     <div class="input-group-append">
                       <button id="boton4" class="input-group-text btn-btn-primary">Plataforma</button>
                     </div>
@@ -262,7 +318,8 @@ else{
                 </div>
                 <div class="col-sm-4">
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Piloto" id="pagina5" name="Piloto">
+                    <input type="text" name="id_vehiculo" value="<?php echo $id_piloto;?>"hidden>
+                    <input value="<?php echo $piloto;?>" type="text" class="form-control" placeholder="Piloto" id="pagina5" name="Piloto">
                     <div class="input-group-append">
                       <button id="boton5" class="input-group-text btn-btn-primary">Piloto</button>
                     </div>
@@ -276,14 +333,14 @@ else{
                 <br>
             <center>
                 <input type="submit" class="btn btn-success" value="Aceptar">
-                <a href="../views/ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
+                <a href="../views/listaviajes.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 <input type="reset" class="btn btn-danger" value="cancelar">
                 
             </center>
         </div>
         <br>
         <br>
-        <script src="../js/padre.js"></script> 
+        <script src="../js/padre2.js"></script> 
     </form>
     <?php
 }

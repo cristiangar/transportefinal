@@ -72,7 +72,7 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $cliente?></td>
                     <td><?php echo $telefono?></td>
                     <td><?php echo $estado?></td>
-                    <td><center><a href="detalle_viaje.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
+                    <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
                     <td><center><a href="../controller/empleado.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
                   </tr>
                  </tbody>

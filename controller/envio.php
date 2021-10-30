@@ -14,9 +14,9 @@ if (isset($_GET['id']))
     {
         if(isset($_GET['id']) and isset($_GET['mod'])){
 
-
-            $au =new CajaSeca();
-            $au->Modificar($id,$placa,$marca,$modelo,$ejes,$tamanio,$color,$economico,$caat,$pimagencaat,$tipo,$ruta_tarjeta,$flotilla);
+            echo "modificar envio";
+            /*$au =new envio();
+            $au->Modificar();*/
             
         }
         else{

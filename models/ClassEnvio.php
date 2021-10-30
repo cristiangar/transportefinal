@@ -10,7 +10,7 @@ class envio
 		$bd = new datos();
 		$bd->conectar();
 
-		$consulta= "call sp_envio('$referencia1','$referencia2','$descripcion',0,'$codigo_envio',$ruta,$cliente,$vehiculo,$caja,$piloto,$usuario,$receptor, 'I', @pn_respuesta);";
+		$consulta= "call sp_envio(0,'$referencia1','$referencia2','$descripcion',0,'$codigo_envio',$ruta,$cliente,$vehiculo,$caja,$piloto,$usuario,$receptor, 'I', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -48,7 +48,7 @@ class envio
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_envio('0', '0', '0', 0, '0', 0, 0, 0, 0, 0, 0, 0, 'S', @pn_respuesta);";
+		$consulta= "call sp_envio(0, '0', '0', '0', 0, '0', 0, 0, 0, 0, 0, 0, 0, 'S', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
@@ -60,7 +60,7 @@ class envio
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_envio('0', '0', '0', $id, '0', 0, 0, 0, 0, 0, 0, 0, 'S1', @pn_respuesta);";
+		$consulta= "call sp_envio(0,'0', '0', '0', $id, '0', 0, 0, 0, 0, 0, 0, 0, 'S1', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
