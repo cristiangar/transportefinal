@@ -15,6 +15,25 @@ if (isset($_GET['id']))
         if(isset($_GET['id']) and isset($_GET['mod'])){
 
             echo "modificar envio";
+            $id=$_POST['id_envio'];
+            $codigo_envio=$_POST['cod'];
+            $referencia1=$_POST['direccion'];
+            $referencia2=$_POST['direccionenvio'];
+            $descripcion=$_POST['descripcion'];
+            $ruta=$_POST['id_ruta'];
+            $cliente=$_SESSION['idcliente'];
+            $vehiculo=$_SESSION['idvehiculo'];
+            $plataforma=$_POST['Plataforma'];
+            $piloto=$_SESSION['idpiloto'];
+            $usuario=$_SESSION['idusuario'];
+            $receptor=$_SESSION['idreceptor'];
+            if($plataforma=='N/A'){
+                $caja=0;
+            }
+            else
+            {
+                $caja=$_SESSION['idplataforma'];
+            }
             /*$au =new envio();
             $au->Modificar();*/
             
