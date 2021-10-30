@@ -67,7 +67,7 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
         }
     }
     ?>
-        
+    <h1>hola</h1>
     <h1>Datos del envio</h1>
       <br>
       <div class="form-row">
