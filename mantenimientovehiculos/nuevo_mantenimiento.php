@@ -154,7 +154,7 @@ else
     $id=$_GET['id'];
 
     ?>
-    <form method="POST" action="../controller/bitacora.php?id=<?php echo $id?>" enctype="multipart/form-data">
+    <form method="POST" action="../controller/mantenimiento.php?id=<?php echo $id?>" enctype="multipart/form-data">
     <br>
     <br>
         <h1>Nuevo Mantenimiento</h1>
@@ -164,12 +164,13 @@ else
 
                         <div class="col-sm-4">
                             <label>Fecha del mantenimiento</label>
-                <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Introduce una fecha" required> />
+                <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Introduce una fecha" required> 
+                <br>
                         </div>
 
                         <div class="col-sm-4">
                             <label>Costo</label>
-                            <input name='pmarca' type="text" class="form-control" placeholder="Marca" require>
+                            <input name='costo' type="text" class="form-control" placeholder="Costo" require>
                         </div>
                                     <div class="col-sm-4">
                 <label>Tipo de Moneda</label>
@@ -181,7 +182,7 @@ else
             <br>
                         <div class="col-sm-4">
                             <label>No. Factura</label>
-                                <input value="N/A" name='pmodelo' type="text" class="form-control" placeholder="Modelo" require>
+                                <input value="N/A" name='no_factura' type="text" class="form-control" placeholder="No Factura" require>
                         </div>
 
                     <br><br>
@@ -189,7 +190,7 @@ else
                     <div class="col-sm-4">
                     <br>
                     <label>Imagen de factura</label>
-                    <input type="file" name="imagen">
+                    <input type="file" name="imagenfactura">
                     </div>
                     <br><br>
             <div class="form-row">
