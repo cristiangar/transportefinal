@@ -61,8 +61,10 @@ if(isset($_SESSION['usuario']))
             <thead> 
               <center><td>Fecha</td></center>  
               <center><td>Descripción</td></center>
+              <center><td>Moneda</td></center>
               <center><td>Costo</td></center>
               <center><td>No. Factura</td></center>
+              <center><td>Ver Factura</td></center>
               
             </thead>
           
@@ -76,17 +78,22 @@ if(isset($_SESSION['usuario']))
             $no_factura=$row['no_factura'];
             $id=$row['id_vehiculos_2'];
             $tipo_moneda=$row['id_tipo_moneda'];
+            $tipo_m=$row['tipo'];
+            $imagen_factura=$row['imagen_factura'];
             ?>
                   <tbody id="myTable">
                   <tr>
 
                     <td><?php echo $fecha?></td>
                     <td><?php echo $descripcion?></td>
+                    <td><?php echo $tipo_m?></td>
                     <td><?php echo $costo?></td>
                     <td><?php echo $no_factura?></td>
+                    <td><a href="<?php echo  $imagen_factura;?>" download="Factura">
+                <button type="button" class="btn btn-primary">Descargar Factura</button></td>
                     
-                    <td><center><a href="nuevo_mantenimiento.php?id=<?php echo $id?>&mod=M&id2=<?php echo $id2?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><a href="../controller/vehiculos_mantenimiento.php?id2=<?php echo $id2?>&es=E&id=<?php echo $id?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                    <!--<td><center><a href="nuevo_mantenimiento.php?id=<?php echo $id?>&mod=M&id2=<?php echo $id2?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>-->
+                    <td><a href="../controller/mantenimiento.php?id2=<?php echo $id2?>&es=E&id=<?php echo $id?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
                   </tr>
                  </tbody>
             <?php
@@ -98,7 +105,7 @@ if(isset($_SESSION['usuario']))
             <center>
                 <a href="nuevo_mantenimiento.php?id=<?php echo $id?>"><button type="button" class="btn btn-primary">Nuevo Registro</button></a>
                 
-                <a href="bitacora.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
+                <a href="lista_vehiculos.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 
                 
             </center>
@@ -114,7 +121,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos en la bitácora</h1>
-      <a href="nueva_bitacora.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
+      <a href="nuevo_mantenimiento.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
       <a href="bitacora.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
     </center>
     <?php

@@ -4,11 +4,11 @@ include ('../Configuracion/config.php');
 class mantenimiento
 {
 
-		public function IngresarMantenimiento($id,$descripcion)
+		public function IngresarMantenimiento($fecha,$descripcion,$costo,$no_factura,$imagenfac,$id,$tipo_moneda)
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_bitacora(0, $id, 1, '$descripcion', 'I', @pn_respuesta);";
+		$consulta= "call sp_mantenimiento(0, '$fecha', '$descripcion', $costo, '$no_factura', '$imagenfac', $id, $tipo_moneda, 'I', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -21,40 +21,18 @@ class mantenimiento
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/bitacora.php" </script>';
+						self.location="../mantenimientovehiculos/lista_vehiculos.php" </script>';
 
 
 	}
 
-	public function VerEnviosA()
-	{
-
-		$db = new datos();
-		$db->conectar();
-		$consulta= "call sp_bitacora(0, 0, 0, '0', 'S2', @pn_respuesta);";
-		$dt= mysqli_query($db->objetoconexion,$consulta);
-		$db->desconectar();
-		return $dt;
-
-	}
-
-		public function VerUnabitacora($id2)
-	{
-
-		$db = new datos();
-		$db->conectar();
-		$consulta= "call sp_bitacora($id2, 0, 0, '0', 'S3', @pn_respuesta);";
-		$dt= mysqli_query($db->objetoconexion,$consulta);
-		$db->desconectar();
-		return $dt;
-
-	}
+	
 			public function VerMantenimientosVehiculo($id)
 	{
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_mantenimiento(0, '0', '0', 0, '0', '0', 1, 0, 'S', @pn_respuesta);";
+		$consulta= "call sp_mantenimiento(0, '0', '0', 0, '0', '0', $id, 0, 'S', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
@@ -65,7 +43,7 @@ class mantenimiento
 
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_bitacora($id2, 0, 0, '0', 'D', @pn_respuesta);";
+		$consulta= "call sp_mantenimiento($id2, '0', '0', 0, '0', '0', 0, 0, 'D', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -78,7 +56,7 @@ class mantenimiento
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/bitacora.php" </script>';
+						self.location="../mantenimientovehiculos/lista_vehiculos.php" </script>';
 
 	}
 
