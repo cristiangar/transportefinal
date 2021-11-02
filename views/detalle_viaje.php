@@ -67,7 +67,6 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
         }
     }
     ?>
-    <h1>hola</h1>
     <h1>Datos del envio</h1>
       <br>
       <div class="form-row">
@@ -186,14 +185,18 @@ else{
         $id_envio=$row['id_envio'];
         $codigo=$row['codigo_envio'];
         $fecha=$row['fecha_envio'];
+
         $id_cliente=$row['id_clientes'];
         $cliente=$row['empresa'];
+
         $id_receptor=$row['id_receptor'];
         $receptor=$row['nombre'];
+
         $id_paquete=$row['id_paquete'];
         $referencia1=$row['referencia_1'];
         $referencia2=$row['referencia_2'];
         $id_ruta=$row['id_rutas'];
+
         $cod_ruta=$row['codigo_ruta'];
         $origen=$row['origen'];
         $destino=$row['destino'];
@@ -309,16 +312,21 @@ else{
 
                 <div class="col-sm-4">
                   <div class="input-group mb-3">
-                    <input type="text" name="id_vehiculo" value="<?php echo $id_plataforma;?>"hidden>   
+                    <input type="text" name="id_plataforma" value="<?php echo $id_plataforma;?>"hidden>   
                     <input value="<?php echo $plataforma." "."No. Placa: ".$placa_plataforma;?>" type="text" class="form-control" placeholder="Plataforma" id="pagina4" name="Plataforma" value="N/A">
                     <div class="input-group-append">
                       <button id="boton4" class="input-group-text btn-btn-primary">Plataforma</button>
                     </div>
                   </div>
+                     <div class="form-check-inline">
+                        <label class="form-check-label">
+                            <input name="retirar" type="checkbox" class="form-check-input" value="">Retira caja seca
+                        </label>
+                    </div>
                 </div>
                 <div class="col-sm-4">
                   <div class="input-group mb-3">
-                    <input type="text" name="id_vehiculo" value="<?php echo $id_piloto;?>"hidden>
+                    <input type="text" name="id_piloto" value="<?php echo $id_piloto;?>"hidden>
                     <input value="<?php echo $piloto;?>" type="text" class="form-control" placeholder="Piloto" id="pagina5" name="Piloto">
                     <div class="input-group-append">
                       <button id="boton5" class="input-group-text btn-btn-primary">Piloto</button>
