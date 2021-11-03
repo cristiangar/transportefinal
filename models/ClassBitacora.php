@@ -8,6 +8,7 @@ class bitacora
 	{
 		$bd = new datos();
 		$bd->conectar();
+		/*QUEDA PENDIENTE CAMBAIR EL 1 POR EL ID DEL USUARIO PARA REGISTRAR QUIEN HIZO EL INGRESO EN LA BITACORA*/
 		$consulta= "call sp_bitacora(0, $id, 1, '$descripcion', 'I', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
@@ -21,7 +22,7 @@ class bitacora
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/bitacora.php" </script>';
+						self.location="../views/lista_bitacora.php" </script>';
 
 
 	}
@@ -54,7 +55,7 @@ class bitacora
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_bitacora(0, $id, 0, '0', 'S1', @pn_respuesta);;";
+		$consulta= "call sp_bitacora(0, $id, 0, '0', 'S1', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
@@ -78,7 +79,7 @@ class bitacora
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/bitacora.php" </script>';
+						self.location="../views/lista_bitacora.php" </script>';
 
 	}
 
@@ -95,13 +96,13 @@ class bitacora
 		$consultar=mysqli_query($bd->objetoconexion,$salida);
 		
 		$bd->desconectar();
-
+		$codigo=$id2;
 		$res=mysqli_fetch_array($consultar);
 		//
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/bitacora.php" </script>';
+						self.location="../views/lista_bitacora.php" </script>';
 
 
 	}

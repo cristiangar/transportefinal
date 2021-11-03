@@ -45,15 +45,12 @@ if(isset($_SESSION['usuario']))
     $cliente=new bitacora();
     $dt=$cliente->VerBitacorasViaje($id);
 
-    
-            
-        /*}*/
-
         ?>
-        <form method="POST" action="../controller/encabezado.php?id2=<?php echo $id2?>&id=<?php echo $id?>">
+        
           <center>
             <br>
-          <h1>Listado de Detalles</h1>
+          <h1>Bitacora de viaje </h1>
+          
           </center>
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
@@ -65,17 +62,17 @@ if(isset($_SESSION['usuario']))
               <center><td>Descripción</td></center>
               
             </thead>
-          
-      <?php
+          <?php
 
             while ($row=mysqli_fetch_array($dt)) {
             $id2=$row['id_bitacora'];
-            $descripcion=$row['descripcion_bitacora'];
+            $descripcion=$row['descripcion'];
             $fecha=$row['fecha']; 
             $hora=$row['hora'];
             $id=$row['id_envio'];
             $codigoenvio=$row['codigo_envio'];
             ?>
+      
                   <tbody id="myTable">
                   <tr>
                     <td><?php echo $codigoenvio?></td>
@@ -96,7 +93,7 @@ if(isset($_SESSION['usuario']))
             <center>
                 <a href="nueva_bitacora.php?id=<?php echo $id?>"><button type="button" class="btn btn-primary">Nuevo Registro</button></a>
                 
-                <a href="bitacora.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
+                <a href="lista_bitacora.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 
                 
             </center>

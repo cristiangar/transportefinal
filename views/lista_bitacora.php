@@ -46,7 +46,10 @@ if(isset($_SESSION['usuario']))
 
   if($resultado>0){
     ?>
-      <h1>Envios Autorizados</h1>
+      <h1>Envios Autorizados **pendiente cambio en el procedimiento y la clase para agregar al usuario que hace los cambios**</h1>
+      <center>
+      <h2>Lista de viajes</h2>
+      </center>
       <br>
       <div class="container mt-3">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
@@ -55,7 +58,7 @@ if(isset($_SESSION['usuario']))
             <thead>
               <td>Codigo envio</td>
               <td>Fecha Envio</td>
-              <td>Fecha entrega</td>
+              
               <td>Cliente</td>
               <td>Receptor</td>
               <td>Estado</td>
@@ -66,16 +69,14 @@ if(isset($_SESSION['usuario']))
             $id=$row['id_envio'];
             $codigo=$row['codigo_envio'];
             $fenvio=$row['fecha_envio'];
-            $fentrega=$row['fecha_entrega'];
             $cliente=$row['cliente'];
             $receptor=$row['receptor'];
-            $autorizacion=$row['autorizacion'];
+            $autorizacion=$row['autorizado'];
             ?>
                   <tbody id="myTable">
                   <tr>
                     <td><?php echo $codigo?></td>
                     <td><?php echo $fenvio?></td>
-                    <td><?php echo $fentrega?></td>
                     <td><?php echo $cliente?></td>
                     <td><?php echo $receptor?></td>
                     <?php
