@@ -6,17 +6,18 @@ if (isset($_GET['id']))
     
     if (isset($_GET['id']) and isset($_GET['es'])) {//valida si es modificar o eliminar
         $id=$_GET['id'];
-        $au =new CajaSeca();
+        $au =new envio();
         $au->  Eliminar($id);
         
     }
     else
     {
         if(isset($_GET['id']) and isset($_GET['mod'])){
-
+            $vehiculo_tipo=$_POST['Vehiculo'];
             $id=$_POST['id_envio'];
             $id_paquete=$_POST['id_paquete'];
             $codigo_envio=$_POST['cod'];
+            $plataforma=$_POST['Plataforma'];
 
 
             if(isset($_SESSION['idcliente'])){
@@ -41,43 +42,47 @@ if (isset($_GET['id']))
             
             if(isset($_SESSION['idvehiculo'])){
                 $vehiculo=$_SESSION['idvehiculo'];
-                $id_vehiculo_anterior=$_POST['id_vehiculo'];
 
             }
             else{
                 $vehiculo=$_POST['id_vehiculo'];
                 //echo "no cambio vehiculo";
             }
-
-            if(isset($_POST['retirar'])){
-                $retiro_caja=0;
-                $id_caja_anterior=$_POST['id_plataforma'];
-                /**se retiro caja */
-            }
-            else{
-                if(isset($_SESSION['idplataforma'])){
-                    $caja=$_SESSION['idplataforma'];
-                    $id_caja_anterior=$_POST['id_plataforma'];
-                }
-                else{
-                    $caja=$_POST['id_plataforma'];
-                   // echo "no cambio caja";
-                }
-            }
-
             if(isset($_SESSION['idpiloto'])){
                 $piloto=$_SESSION['idpiloto'];
-                $id_piloto_anterior=$_POST['id_piloto'];
 
             }
             else{
                 $piloto=$_POST['id_piloto'];
                 //echo "no cambio piloto";
             }
-
-
-            /*$au =new envio();
-            $au->Modificar();*/
+            
+            if(($vehiculo_tipo=="Camion") or ($vehiculo_tipo=="CAMION")){
+                $caja=0;
+                $retiro_caja=1;
+                $au =new envio();
+                $au->Modificar($id, $id_paquete, $codigo_envio, $cliente, $receptor, $referencia1, $referencia2,$descripcion, $ruta, $vehiculo, $caja, $retiro_caja, $piloto);
+            }
+            else{
+                if(isset($_POST['retirar'])){
+                    $retiro_caja=0;
+                    //se retiro caja 
+                    $caja=0;         
+                }
+                else{
+                        $retiro_caja=5;
+                        if(isset($_SESSION['idplataforma'])){
+                            $caja=$_SESSION['idplataforma'];
+                        }
+                        else{
+                            $caja=$_POST['id_plataforma'];
+                        }
+                }  
+ 
+                $au =new envio();
+                $au->Modificar($id, $id_paquete, $codigo_envio, $cliente, $receptor, $referencia1, $referencia2,$descripcion, $ruta, $vehiculo, $caja, $retiro_caja, $piloto);
+           
+            }
             
         }
         else{
