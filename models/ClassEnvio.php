@@ -71,7 +71,7 @@ class envio
 
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_caja_seca($id, '0', '0', 0, 0, '0', '0', 0, '0', '0', '0', '0', 0, 'D', @pn_respuesta);";
+		$consulta= "call sp_envio(0, '0', '0', '0', $id, '0', 0, 0, 0, 0, 0, 0, 0, 'D', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -84,17 +84,33 @@ class envio
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/lista_caja.php" </script>';
+						self.location="../views/listaviajes.php" </script>';
 
 	}
 
 				
 
-	public function Modificar($id,$placa,$marca,$modelo,$ejes,$tamanio,$color,$economico,$caat,$pimagencaat,$tipo,$ruta_tarjeta,$flotilla)
+	public function Modificar($id, $id_paquete, $codigo_envio, $cliente, $receptor, $referencia1, $referencia2,$descripcion, $ruta, $vehiculo, $caja, $retiro_caja, $piloto)
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_caja_seca($id, '$placa', '$marca', $modelo, $ejes, '$tamanio', '$color', $economico, '$caat', '$pimagencaat', '$tipo', '$ruta_tarjeta', $flotilla, 'U', @pn_respuesta);";
+		if($retiro_caja==0){
+			$consulta= "call sp_actualizar_envio($id, $id_paquete, '$codigo_envio', $cliente, $receptor, '$referencia1', '$referencia2','$descripcion', $ruta, $vehiculo, $caja, $retiro_caja, $piloto, 'U', @pn_respuesta);";
+			// echo "cambia de cabezal a camion ";
+		}
+		else{
+			if($retiro_caja==1)
+			{
+				//echo "cambia solo camiones";
+				$consulta= "call sp_actualizar_envio($id, $id_paquete, '$codigo_envio', $cliente, $receptor, '$referencia1', '$referencia2','$descripcion', $ruta, $vehiculo, $caja, $retiro_caja, $piloto, 'U2', @pn_respuesta);";
+			}
+			else
+			{
+				//echo "cambi todo para cabezal y plataforma";
+				$consulta= "call sp_actualizar_envio($id, $id_paquete, '$codigo_envio', $cliente, $receptor, '$referencia1', '$referencia2','$descripcion', $ruta, $vehiculo, $caja, $retiro_caja, $piloto, 'U3', @pn_respuesta);";	
+			}
+			
+		}
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -103,11 +119,11 @@ class envio
 		$bd->desconectar();
 
 		$res=mysqli_fetch_array($consultar);
-		//
+	
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/lista_caja.php" </script>';
+						self.location="../views/listaviajes.php" </script>';
 
 
 	}	
