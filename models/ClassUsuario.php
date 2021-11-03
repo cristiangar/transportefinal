@@ -37,6 +37,17 @@ class Usuario
 		return $dt;
 
 	}
+	public function VerUsuario2()
+	{
+
+		$db = new datos();
+		$db->conectar();
+		$consulta= "call sp_usuario('0', 0, '0', '0', 0, 0, 'S2', @pn_respuesta);";
+		$dt= mysqli_query($db->objetoconexion,$consulta);
+		$db->desconectar();
+		return $dt;
+
+	}
 			public function VerUnUsuario($id)
 	{
 
@@ -48,27 +59,19 @@ class Usuario
 		return $dt;
 
 	}
-				public function Eliminar($id)
+
+	public function VerUnUsuario2($id)
 	{
 
-		$bd = new datos();
-		$bd->conectar();
-		$consulta= "call sp_cliente($id, '0', '0', '0', '0', '0', '0', '0', '0', 'D', @pn_respuesta);";
-		$dt= mysqli_query($bd->objetoconexion,$consulta);
-
-		$salida="SELECT @pn_respuesta";
-		$consultar=mysqli_query($bd->objetoconexion,$salida);
-		
-		$bd->desconectar();
-
-		$res=mysqli_fetch_array($consultar);
-		//
-		$texto=$res['@pn_respuesta'];
-		echo'<script language = javascript>
-						alert("'.$texto.'")
-						self.location="../views/clientes.php" </script>';
+		$db = new datos();
+		$db->conectar();
+		$consulta= "call sp_usuario('0', $id, '0', '0', 0, 0, 'S3', @pn_respuesta);";
+		$dt= mysqli_query($db->objetoconexion,$consulta);
+		$db->desconectar();
+		return $dt;
 
 	}
+				
 
 				
 
@@ -90,6 +93,28 @@ class Usuario
 		echo'<script language = javascript>
 						alert("'.$texto.'")
 						self.location="../views/lista_usuarios_personal.php" </script>';
+
+
+	}
+
+	public function ModificarUsuario2($id,$us,$pwd,$rol)
+	{
+		$bd = new datos();
+		$bd->conectar();
+		$consulta= "call sp_usuario('654',$id,'$us','$pwd',$rol,1,'U', @pn_respuesta);";
+		$dt= mysqli_query($bd->objetoconexion,$consulta);
+
+		$salida="SELECT @pn_respuesta";
+		$consultar=mysqli_query($bd->objetoconexion,$salida);
+		
+		$bd->desconectar();
+
+		$res=mysqli_fetch_array($consultar);
+		//
+		$texto=$res['@pn_respuesta'];
+		echo'<script language = javascript>
+						alert("'.$texto.'")
+						self.location="../views/lista_usuarios_piloto.php" </script>';
 
 
 	}

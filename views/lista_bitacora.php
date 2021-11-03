@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Usuarios</title>
+    <title>Bitácoras de Viajes</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,12 +23,12 @@ if(isset($_SESSION['usuario']))
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <a href="ViewAdministrador.php">
+        <a href="secritaria.php">
         <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
         </a>
     <ul class="navbar-nav ml-auto">
         <li class="navbar-item">
-            <a class="nav-link" >Usuario: <?echo $us;?></a>
+            <a class="nav-link" >Usuario: <?php echo $us;?></a>
         </li>
         <li class="navbar-item">
             <a class="nav-link" href="../index.php">Cerrar sesión</a>
@@ -38,40 +38,58 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../controller/usuario.php");
+  include_once("../models/ClassBitacora.php");
+  $envio=new bitacora();
+  $dt=$envio->VerEnviosA();
+
   $resultado=$dt->num_rows;
+
   if($resultado>0){
     ?>
-      <h1>Usuarios del Personal</h1>
+      <h1>Envios Autorizados</h1>
       <br>
       <div class="container mt-3">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
-              <td>Empleado</td>
-              <td>Rol</td>
-              <td>Usuario</td>
-              <td>Clave</td>
-              <td>Modificar</td>
-  
+              <td>Codigo envio</td>
+              <td>Fecha Envio</td>
+              <td>Fecha entrega</td>
+              <td>Cliente</td>
+              <td>Receptor</td>
+              <td>Estado</td>
+              <td>Detalle</td>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
-            $id=$row['id'];
-            $empleado=$row['empleado'];
-            $rol=$row['rol'];
-            $usuario=$row['nombre'];
-            $pwd=$row['clave'];
-
+            $id=$row['id_envio'];
+            $codigo=$row['codigo_envio'];
+            $fenvio=$row['fecha_envio'];
+            $fentrega=$row['fecha_entrega'];
+            $cliente=$row['cliente'];
+            $receptor=$row['receptor'];
+            $autorizacion=$row['autorizacion'];
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $empleado?></td>
-                    <td><?php echo $rol?></td>
-                    <td><?php echo $usuario?></td>
-                    <td><?php echo $pwd?></td>
-                    <td><center><a href="nuevo_usuario.php?id=<?php echo $id?>&em=<?php echo $empleado?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
+                    <td><?php echo $codigo?></td>
+                    <td><?php echo $fenvio?></td>
+                    <td><?php echo $fentrega?></td>
+                    <td><?php echo $cliente?></td>
+                    <td><?php echo $receptor?></td>
+                    <?php
+                    if($autorizacion=='0')
+                    {
+                      echo '<td>sin Autorizar</td>';
+                    }
+                    else{
+                      echo '<td>Autorizado</td>';
+                    }
+                    ?>
+                    <td><center><a href="lista_bitacora_viaje.php?id=<?php echo $id?>"><button type="button" class="btn btn-primary">Bitacora</button></a></center></td>
+                    <td><center><a href="nueva_bitacora.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Nuevo Regsitro</button></a></center></td>
+
                   </tr>
                  </tbody>
             <?php
@@ -86,11 +104,14 @@ if(isset($_SESSION['usuario']))
                 echo'</tfoot>';
                 echo '</table>';
                 ?>
-                <center>
-                    <a href="agregar_empleado.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
-                    <a href="ViewUsuarios.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
-                </center>
-                <?php
+            <center>
+                 
+                
+                <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
+                
+                
+            </center>
+            <?php
   }
   else{
     ?> 
@@ -101,15 +122,14 @@ if(isset($_SESSION['usuario']))
       <br>
       <br>
       <br><br><br><br>
-      <h1>No hay datos ingresados</h1>
-      <a href="nuevo_personal.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
-      <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
+      <h1>No hay viajes autorizados</h1>
+      <br>
+      <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
   }
 ?>
 
-</div>
 </div>
 </body>
 
@@ -123,6 +143,7 @@ $(document).ready(function(){
   });
 });
 </script>
+
 </html>
 <?php
 }

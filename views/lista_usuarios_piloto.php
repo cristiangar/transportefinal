@@ -38,18 +38,18 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../controller/usuario.php");
+  include_once("../controller/usuario_piloto.php");
   $resultado=$dt->num_rows;
   if($resultado>0){
     ?>
-      <h1>Usuarios del Personal</h1>
+      <h1>Usuarios de Pilotos</h1>
       <br>
       <div class="container mt-3">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
-              <td>Empleado</td>
+              <td>Piloto</td>
               <td>Rol</td>
               <td>Usuario</td>
               <td>Clave</td>
@@ -59,7 +59,7 @@ if(isset($_SESSION['usuario']))
       <?php
           while ($row=mysqli_fetch_array($dt)) {
             $id=$row['id'];
-            $empleado=$row['empleado'];
+            $empleado=$row['piloto'];
             $rol=$row['rol'];
             $usuario=$row['nombre'];
             $pwd=$row['clave'];
@@ -71,7 +71,7 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $rol?></td>
                     <td><?php echo $usuario?></td>
                     <td><?php echo $pwd?></td>
-                    <td><center><a href="nuevo_usuario.php?id=<?php echo $id?>&em=<?php echo $empleado?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
+                    <td><center><a href="nuevo_usuario_piloto.php?id=<?php echo $id?>&em=<?php echo $empleado?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
@@ -87,7 +87,7 @@ if(isset($_SESSION['usuario']))
                 echo '</table>';
                 ?>
                 <center>
-                    <a href="agregar_empleado.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
+                    <a href="agregar_piloto.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
                     <a href="ViewUsuarios.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 </center>
                 <?php
@@ -102,7 +102,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
-      <a href="nuevo_personal.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
+      <a href="agregar_piloto.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
       <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
     </center>
     <?php
