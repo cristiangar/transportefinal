@@ -47,7 +47,7 @@ if(isset($_SESSION['usuario']))
       <div class="container-fluid">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
-      <table class="table table-dark table-striped table-hover table-responsive" border="1" id="tabla_paginada">
+      <table class="table table-dark table-bordered table-responsive" border="1" id="tabla_paginada">
             <thead>
               <td>No. de Viaje</td> 
               <td>Nombre de Operador</td>
