@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once("../controller/datos.php");
 if(isset($_SESSION['usuario']))
 {
     $rol=$_SESSION['rol'];
@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bitácoras de Viajes</title>
+    <title>Viajes</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +23,6 @@ if(isset($_SESSION['usuario']))
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <a href="ViewAdministrador.php">
         <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
         </a>
     <ul class="navbar-nav ml-auto">
@@ -38,18 +37,10 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../models/ClassBitacora.php");
-  $envio=new bitacora();
-  $dt=$envio->VerEnviosA();
-
-  $resultado=$dt->num_rows;
-
+  $resultado=$dt8->num_rows;
   if($resultado>0){
     ?>
-      <h1>Envios Autorizados **pendiente cambio en el procedimiento y la clase para agregar al usuario que hace los cambios**</h1>
-      <center>
-      <h2>Lista de viajes</h2>
-      </center>
+      <h1>Lista de Viajes</h1>
       <br>
       <div class="container mt-3">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
@@ -58,25 +49,26 @@ if(isset($_SESSION['usuario']))
             <thead>
               <td>Codigo envio</td>
               <td>Fecha Envio</td>
-              
               <td>Cliente</td>
               <td>Receptor</td>
               <td>Estado</td>
               <td>Detalle</td>
             </thead>
       <?php
-          while ($row=mysqli_fetch_array($dt)) {
+          while ($row=mysqli_fetch_array($dt8)) {
             $id=$row['id_envio'];
             $codigo=$row['codigo_envio'];
             $fenvio=$row['fecha_envio'];
             $cliente=$row['cliente'];
+            $idcliente=$row['id_cliente'];
             $receptor=$row['receptor'];
-            $autorizacion=$row['autorizado'];
+            $autorizacion=$row['autorizacion'];
             ?>
                   <tbody id="myTable">
                   <tr>
                     <td><?php echo $codigo?></td>
                     <td><?php echo $fenvio?></td>
+                    <td><?php echo $fentrega?></td>
                     <td><?php echo $cliente?></td>
                     <td><?php echo $receptor?></td>
                     <?php
@@ -88,8 +80,7 @@ if(isset($_SESSION['usuario']))
                       echo '<td>Autorizado</td>';
                     }
                     ?>
-                    <td><center><a href="lista_bitacora_viaje.php?id=<?php echo $id?>"><button type="button" class="btn btn-primary">Bitacora</button></a></center></td>
-                    <td><center><a href="nueva_bitacora.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Nuevo Regsitro</button></a></center></td>
+                    <td><center><a href="listaenvio.php?id=<?php echo $id?>&co=<?php echo $codigo?>&idcliente=<?php echo $idcliente?>&cli=<?php echo $cliente?>"><button type="button" class="btn btn-primary">Seleccionar</button></a></center></td>
 
                   </tr>
                  </tbody>
@@ -108,8 +99,6 @@ if(isset($_SESSION['usuario']))
             <center>
                  
                 
-                <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
-                
                 
             </center>
             <?php
@@ -123,9 +112,9 @@ if(isset($_SESSION['usuario']))
       <br>
       <br>
       <br><br><br><br>
-      <h1>No hay viajes autorizados</h1>
+      <h1>No hay datos ingresados</h1>
       <br>
-      <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+      
     </center>
     <?php
   }
@@ -144,6 +133,28 @@ $(document).ready(function(){
   });
 });
 </script>
+
+<?php
+    if (isset($_GET['id'])){
+      
+      $valor=$_GET['id'];
+      $nombre=$_GET['co'];
+      $nombrecli=$_GET['cli'];
+      $idclienteenvio=$_GET['idcliente'];
+      $_SESSION['idenvio']=$valor;
+      $_SESSION['idclienteenvio']=$idclienteenvio;
+      ?>
+          <h2>Cliente seleccionado: <?php echo $nombre ?></h2>
+          <input value='<?php echo $nombre;?>' type="text" id='P8' placeholder="Enviar al padre" hidden >&nbsp;
+          <input value='<?php echo $nombrecli;?>' type="text" id='P14' placeholder="Enviar al padre" hidden >&nbsp;
+          <label for="">Precione el boton aceptar para continuar</label> <br>
+          <button class='btn btn-success btn-lg' id='btnp8' onclick="window.close();">Aceptar</button>
+      <?php
+    }
+    ?>
+    <br>
+    <script src="../js/hija8.js"></script>
+
 
 </html>
 <?php

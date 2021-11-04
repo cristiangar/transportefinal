@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bitácoras de Viajes</title>
+    <title>Encabezado</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +23,7 @@ if(isset($_SESSION['usuario']))
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-        <a href="ViewAdministrador.php">
+        <a href="secritaria.php">
         <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
         </a>
     <ul class="navbar-nav ml-auto">
@@ -38,17 +38,13 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../models/ClassBitacora.php");
-  $envio=new bitacora();
-  $dt=$envio->VerEnviosA();
-
+  include_once("../controller/encabezado.php");
   $resultado=$dt->num_rows;
-
   if($resultado>0){
     ?>
-      <h1>Envios Autorizados **pendiente cambio en el procedimiento y la clase para agregar al usuario que hace los cambios**</h1>
+      <h1>Encabezado</h1>
       <center>
-      <h2>Lista de viajes</h2>
+        <h2>Cuentas por Cobrar</h2>
       </center>
       <br>
       <div class="container mt-3">
@@ -56,41 +52,55 @@ if(isset($_SESSION['usuario']))
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
-              <td>Codigo envio</td>
-              <td>Fecha Envio</td>
-              
+              <td>Codigo Envio</td>
               <td>Cliente</td>
-              <td>Receptor</td>
-              <td>Estado</td>
-              <td>Detalle</td>
+              <td>Total</td>
+              <td>Saldo</td>
+              <td>Fecha</td>
+              <td>Estado de la Cuenta</td>
+              <td>Lista de Detalles</td>
+              <td>Agregar Detalle</td>
+              <td>Eliminar Detalle</td>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
-            $id=$row['id_envio'];
-            $codigo=$row['codigo_envio'];
-            $fenvio=$row['fecha_envio'];
+            $id=$row['id_encabezado'];
+            $envio=$row['codigo_envio'];
             $cliente=$row['cliente'];
-            $receptor=$row['receptor'];
-            $autorizacion=$row['autorizado'];
+            $total=$row['total'];
+            $saldo=$row['saldo'];
+            $fecha=$row['fecha'];
+            $estado_factura=$row['estado_factura'];
+            
+            $datos=array("cliente"=>$cliente,"total"=>$total,"estadof"=>$estado_factura,"saldo"=>$saldo,"envio"=>$envio);
+            $comprimida=serialize($datos);
+            $comprimida=urlencode($comprimida);
+            
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $codigo?></td>
-                    <td><?php echo $fenvio?></td>
+                    <td><?php echo $envio?></td>
                     <td><?php echo $cliente?></td>
-                    <td><?php echo $receptor?></td>
+                    <td><?php echo $total?></td>
+                    <td><?php echo $saldo?></td>
+                    <td><?php echo $fecha?></td>
+                    
                     <?php
-                    if($autorizacion=='0')
-                    {
-                      echo '<td>sin Autorizar</td>';
-                    }
-                    else{
-                      echo '<td>Autorizado</td>';
-                    }
+                      if($estado_factura == 'Cancelado' or $estado_factura =='cancelado'){
+                        ?>
+                        <td><span class="badge badge-success"><?php echo $estado_factura?></span></td>
+                        <?php
+                      }
+                      else{
+                        ?>
+                        <td><span class="badge badge-danger"><?php echo $estado_factura?></span></td>
+                        <?php
+                      }
                     ?>
-                    <td><center><a href="lista_bitacora_viaje.php?id=<?php echo $id?>"><button type="button" class="btn btn-primary">Bitacora</button></a></center></td>
-                    <td><center><a href="nueva_bitacora.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Nuevo Regsitro</button></a></center></td>
-
+                    
+                    <td><center><a href="lista_detalle.php?id=<?php echo $id?>&envio=<?php echo $envio;?>&datos=<?php echo $comprimida;?>"><button type="button" class="btn btn-info">Detalles</button></a></center></td>
+                    <td><center><a href="nuevo_detalle.php?id=<?php echo $id?>"><button type="button" class="btn btn-primary">Agregar Detalle</button></a></center></td>
+                    <td><a href="../controller/nuevoencabezado.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
                   </tr>
                  </tbody>
             <?php
@@ -106,11 +116,8 @@ if(isset($_SESSION['usuario']))
                 echo '</table>';
                 ?>
             <center>
-                 
-                
-                <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
-                
-                
+                <a href="../envio/nuevo_encabezado.php"><button type="button" class="btn btn-success" >Nuevo Encabezado</button></a> 
+                <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>                
             </center>
             <?php
   }
@@ -123,8 +130,10 @@ if(isset($_SESSION['usuario']))
       <br>
       <br>
       <br><br><br><br>
-      <h1>No hay viajes autorizados</h1>
+      <h1>No hay datos ingresados</h1>
       <br>
+      <br>
+      <a href="../envio/nuevo_encabezado.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a> 
       <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
