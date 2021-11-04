@@ -41,89 +41,92 @@ if(isset($_SESSION['usuario']))
   include_once("../controller/pago_piloto.php");
   $resultado=$dt->num_rows;
   if($resultado>0){
+
     ?>
       <h1>Viajes listos para depositar</h1>
       <br>
-      <div class="container-fluid">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
-      <table class="table table-dark table-bordered table-responsive"  id="tabla_paginada">
-            <thead>
-              <td>No. de Viaje</td> 
-              <td>Nombre de Operador</td>
-              <td>Cliente</td>
-              <td>País</td>
-              <td>Adelanto</td>
-              <td>Pendiente Complemento</td>
-              <td>Total</td>
-              <td>Renta de Caja</td>
-              <td>Combustible</td>
-              <td>Tipo de Cuenta</td>
-              <td>Banco</td>
-              <td>Cuenta Numero</td>
-              <td>Cuentahabiente</td>
-              <td>Telefono</td>
-              <td>depositar</td>  
-            </thead>
-      <?php
-          while ($row=mysqli_fetch_array($dt)) {
-                $id_pago_piloto=$row['id_pago_piloto'];
-                $id_envio=$row['id_envio'];
-                $codigo_envio=$row['codigo_envio'];
-                $id_piloto=$row['id_piloto'];
-                $piloto=$row['piloto'];
-                $id_clientes=$row['id_clientes'];
-                $empresa=$row['empresa'];
-                $origen=$row['origen'];
-                $adelanto_piloto=$row['adelanto_piloto'];
-                $pendiente_piloto=$row['pendiente_piloto'];
-                $total_pago=$row['total_pago'];
-                $renta_caja=$row['renta_caja'];
-                $combustible=$row['combustible'];
-                $tipo_cuenta=$row['tipo_cuenta'];
-                $banco=$row['banco'];
-                $no_cuenta=$row['no_cuenta'];
-                $nombre_cuenta=$row['nombre_cuenta'];
-                $tel_piloto=$row['tel_piloto'];
+      <div class="table-responsive">
+                        <table class="table table-bordered table-dark table-hover" id="tabla_paginada">
+                            <thead>
+                                <tr>
+                                    <th>No. Viaje</th>
+                                    <th>Operador</th>
+                                    <th>Cliente</th>
+                                    <th>Pais</th>
+                                    <th>Adelanto</th>
+                                    <th>Pendiente Complemento</th>
+                                    <th>Total</th>
+                                    <th>Renta de caja</th>
+                                    <th>Combustible</th>
+                                    <th>Tipo de Cuenta</th>
+                                    <th>Banco</th>
+                                    <th>No. Cuenta</th>
+                                    <th>Cuentahabiente</th>
+                                    <th>Telefono</th>
+                                    <th>Seleccionar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                              <?php
+                                    while ($row=mysqli_fetch_array($dt)) {
+                                      $id_pago_piloto=$row['id_pago_piloto'];
+                                      $id_envio=$row['id_envio'];
+                                      $codigo_envio=$row['codigo_envio'];
+                                      $id_piloto=$row['id_piloto'];
+                                      $piloto=$row['piloto'];
+                                      $id_clientes=$row['id_clientes'];
+                                      $empresa=$row['empresa'];
+                                      $origen=$row['origen'];
+                                      $adelanto_piloto=$row['adelanto_piloto'];
+                                      $pendiente_piloto=$row['pendiente_piloto'];
+                                      $total_pago=$row['total_pago'];
+                                      $renta_caja=$row['renta_caja'];
+                                      $combustible=$row['combustible'];
+                                      $tipo_cuenta=$row['tipo_cuenta'];
+                                      $banco=$row['banco'];
+                                      $no_cuenta=$row['no_cuenta'];
+                                      $nombre_cuenta=$row['nombre_cuenta'];
+                                      $tel_piloto=$row['tel_piloto'];
+                                      ?>
+                                        <tr>
+                                            <td><?php echo $codigo_envio;?></td>
+                                            <td><?php echo $piloto;?></td>
+                                            <td><?php echo $empresa;?></td>
+                                            <td><?php echo $origen;?></td>
+                                            <td><?php echo $adelanto_piloto;?></td>
+                                            <td><?php echo $pendiente_piloto;?></td>
+                                            <td><?php echo $total_pago;?></td>
+                                            <td><?php echo $renta_caja;?></td>
+                                            <td><?php echo $combustible;?></td>
+                                            <td><?php echo $tipo_cuenta;?></td>
+                                            <td><?php echo $banco;?></td>
+                                            <td><?php echo $no_cuenta;?></td>
+                                            <td><?php echo $nombre_cuenta;?></td>
+                                            <td><?php echo $tel_piloto;?></td>
+                                            <td><center><a href="listapilotopago.php?id=<?php echo $id?>&no=<?php echo $nombre?>&idp=<?php echo $idp?>&ad=<?php echo $adelanto?>&pe=<?php echo $pendiente?>&d=<?php echo $idenvio;?>"><button type="button" class="btn btn-primary">Seleccionar</button></a></center></td>
+                                        </tr>                                        
+                                      <?php
+                                    }
+                              ?>
+                            </tbody>
+                              <tfoot>
+                                <td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
+                                <td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
+                                <td id="indicador_paginas"></td>
+                                <td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
+                                <td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
+                              </tfoot>
+                        </table>
+        </div>
+        <div class="container-fluid">
+          <center>
+          <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+          </center>
+        </div>
 
-
-            ?>
-                  <tbody id="myTable">
-                  <tr>
-                    <td><?php echo $codigo_envio?></td>
-                    <td><?php echo $piloto?></td>
-                    <td><?php echo $empresa?></td>
-                    <td><?php echo $origen?></td>
-                    <td><?php echo $adelanto_piloto?></td>
-                    <td><?php echo $pendiente_piloto?></td>
-                    <td><?php echo $total_pago?></td>
-                    <td><?php echo $renta_caja?></td>
-                    <td><?php echo $combustible?></td>
-                    <td><?php echo $tipo_cuenta?></td>
-                    <td><?php echo $banco?></td>
-                    <td><?php echo $no_cuenta?></td>
-                    <td><?php echo $nombre_cuenta?></td>
-                    <td><?php echo $tel_piloto?></td>
-                    <td><center><a href="detalle_caja.php?id=<?php ?>"><button type="button" class="btn btn-info">Seleccionar</button></a></center></td>
-                  </tr>
-                 </tbody>
-            <?php
-
-          }
-               echo '<tfoot>';
-                echo  '<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>';
-                echo  '<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>';
-                echo  '<td id="indicador_paginas"></td>';
-                echo  '<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>';
-                echo  '<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>';
-                echo'</tfoot>';
-                echo '</table>';
-
-                ?>
-                <center>
-                    <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
-                </center>
-                <?php
+    <?php
   }
   else{
     ?> 
