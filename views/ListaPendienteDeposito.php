@@ -55,6 +55,7 @@ if(isset($_SESSION['usuario']))
               <td>País</td>
               <td>Adelanto</td>
               <td>Pendiente Complemento</td>
+              <td>Total</td>
               <td>Renta de Caja</td>
               <td>Combustible</td>
               <td>Tipo de Cuenta</td>
@@ -77,7 +78,7 @@ if(isset($_SESSION['usuario']))
                 $adelanto_piloto=$row['adelanto_piloto'];
                 $pendiente_piloto=$row['pendiente_piloto'];
                 $total_pago=$row['total_pago'];
-                $renta_caja=$row['$renta_caja'];
+                $renta_caja=$row['renta_caja'];
                 $combustible=$row['combustible'];
                 $tipo_cuenta=$row['tipo_cuenta'];
                 $banco=$row['banco'];
@@ -95,7 +96,7 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $origen?></td>
                     <td><?php echo $adelanto_piloto?></td>
                     <td><?php echo $pendiente_piloto?></td>
-                    <td><?php echo $total?></td>
+                    <td><?php echo $total_pago?></td>
                     <td><?php echo $renta_caja?></td>
                     <td><?php echo $combustible?></td>
                     <td><?php echo $tipo_cuenta?></td>
