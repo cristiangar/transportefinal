@@ -47,7 +47,7 @@ if(isset($_SESSION['usuario']))
       <div class="container-fluid">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
-      <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
+      <table class="table table-dark table-striped table-hover table-responsive" border="1" id="tabla_paginada">
             <thead>
               <td>No. de Viaje</td> 
               <td>Nombre de Operador</td>
@@ -104,7 +104,7 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $no_cuenta?></td>
                     <td><?php echo $nombre_cuenta?></td>
                     <td><?php echo $tel_piloto?></td>
-                    <td><center><a href="detalle_caja.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Seleccionar</button></a></center></td>
+                    <td><center><a href="detalle_caja.php?id=<?php echo ?>"><button type="button" class="btn btn-info">Seleccionar</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
