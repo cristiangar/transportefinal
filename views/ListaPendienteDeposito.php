@@ -104,7 +104,7 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $no_cuenta?></td>
                     <td><?php echo $nombre_cuenta?></td>
                     <td><?php echo $tel_piloto?></td>
-                    <td><center><a href="detalle_caja.php?id=<?php echo ?>"><button type="button" class="btn btn-info">Seleccionar</button></a></center></td>
+                    <td><center><a href="detalle_caja.php?id=<?php ?>"><button type="button" class="btn btn-info">Seleccionar</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
