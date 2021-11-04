@@ -1,5 +1,5 @@
 <?php
-include_once('../controller/envio.php');
+include_once('../controller/autorizar.php');
 if(isset($_SESSION['usuario']))
 {
     $rol=$_SESSION['rol'];
@@ -52,16 +52,20 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
         $origen=$row['origen'];
         $destino=$row['destino'];
         $descripcion=$row['descripcion'];
+        $id_vehiculo=$row['id_vehiculo'];
         $vehiculo=$row['tipo_vehiculo'];
+        $id_pilotos=$row['id_piloto'];
         $piloto=$row['npiloto'];
         $placa=$row['no_placa'];
         if(($vehiculo=="Cabezal") or ($vehiculo=="cabezal") or ($vehiculo=='CABEZAL'))
         {
+            $id_caja=$row['id_caja_seca'];
             $plataforma=$row['tipo'];
              $placa_plataforma=$row['placa'];
         }
         else
         {
+            $id_caja=0;
             $plataforma="N/A";
             $placa_plataforma="N/A";
         }
@@ -173,32 +177,45 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
                     {
                         ?>
                         <h1>Agregar al envio:</h1>
-                        <form action="">
+                        <form method="POST" action="../controller/autorizar.php" >
                             <div class="form-row">
+                            <input type="text"  name="idEnvio" value="<?php echo $_GET['id']?>" hidden>
+                            <input type="text"  name="idPiloto" value="<?php echo $id_pilotos;?>" hidden>
+                            <input type="text"  name="idVehiculo" value="<?php echo $id_vehiculo; ?>" hidden>
+                            <input type="text"  name="idCaja" value="<?php echo   $id_caja; ?>" hidden>
+
                                 <div class="col-sm-4">
                                     <label for="">Renta de caja</label>
-                                    <input type="text" class="form-control"  value="0.00" name="renta">
+                                    <input type="number" step="0.01" class="form-control" value="0.00"  name="renta">
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="">Combustible</label>
-                                    <input type="text" class="form-control"  value="0.00" name="gas">
+                                    <input type="number" step="0.01" class="form-control" value="0.00"  name="gas">
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="">Adelanto</label>
-                                    <input type="text" class="form-control"  value="0.00" name="adelanto">
+                                    <input type="number" step="0.01" class="form-control" value="0.00"  name="adelanto">
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="">Pendiente</label>
-                                    <input type="text" class="form-control" value="0.00" name="pendiente">
+                                    <input type="number" step="0.01" class="form-control" value="0.00" name="pendiente">
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="">Tipo Moneda</label>
+                                    <select name="id_moneda" id="" class="form-control">        
                                     <?php
+                                        while($row=mysqli_fetch_array($dt2)){
+                                            $valor=$row['id_tipo_moneda'];
+                                            $texto=$row['tipo'];
+                                            echo '<option  value="'.$valor.'">'.$texto.'</option>';
+                                        }
                                     ?>
+                                    </select>
                                 </div>
                             </div>
+                            <br>
                             <center>
-                                <input type="submit" class="btn btn-success" value="Aceptar">
+                                <input type="submit" class="btn btn-success" value="Actualizar">
                                 <a href="listaviajesnoautorizados.php"><button type="button" class="btn btn-warning" >Regresar</button></a> 
                                 <input type="reset" class="btn btn-danger" value="cancelar">
                             </center>
@@ -223,180 +240,7 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
     <?php
 }
 else{
-    /**modificar envio */
-    while ($row=mysqli_fetch_array($dt)) {
-        $id_envio=$row['id_envio'];
-        $codigo=$row['codigo_envio'];
-        $fecha=$row['fecha_envio'];
-
-        $id_cliente=$row['id_clientes'];
-        $cliente=$row['empresa'];
-
-        $id_receptor=$row['id_receptor'];
-        $receptor=$row['nombre'];
-
-        $id_paquete=$row['id_paquete'];
-        $referencia1=$row['referencia_1'];
-        $referencia2=$row['referencia_2'];
-        $id_ruta=$row['id_rutas'];
-
-        $cod_ruta=$row['codigo_ruta'];
-        $origen=$row['origen'];
-        $destino=$row['destino'];
-        $descripcion=$row['descripcion'];
-        $id_vehiculo=$row['id_vehiculo'];
-        $vehiculo=$row['tipo_vehiculo'];
-        $id_piloto=$row['id_piloto'];
-        $piloto=$row['npiloto'];
-        $placa=$row['no_placa'];
-        if(($vehiculo=="Cabezal") or ($vehiculo=="cabezal") or ($vehiculo=='CABEZAL'))
-        {
-
-                $id_plataforma=$row['id_caja_seca'];
-                $plataforma=$row['tipo'];
-                $placa_plataforma=$row['placa'];
-     
-
-        }
-        else
-        {
-            $id_plataforma="0";
-            $plataforma="N/A";
-            $placa_plataforma="N/A";
-        }
-    }
-    ?>
-     <form method="POST" action="../controller/envio.php?id=<?php echo $id_envio?>&mod" enctype="multipart/form-data">
-        
-      <h1>Datos del envio</h1>
-      <br>
-      <div class="form-row">
-        <div class="col-sm-4">
-          <label>Codigo envio</label>
-          <input value="<?php echo $id_envio;?>" type="text" name="id_envio" class="form-control"hidden>
-          <input value="<?php echo $codigo;?>" type="text" name="cod" class="form-control" placeholder="codigo envio"require>
-        </div>
-      </div>
-      <br>
-
-      <h1>Datos del cliente y receptor</h1>
-      <br>
-       <div class="form-row">
-            <div class="col-sm-4">
-                <div class="input-group mb-3">
-                    <input value="<?php echo $id_cliente;?>" type="text" name="id_cliente" hidden>
-                    <input value="<?php echo $cliente;?>" type="text" class="form-control" placeholder="cliente" id="pagina1" return false; name="Cliente">
-                    <div class="input-group-append">
-                        <button class="input-group-text btn-btn-primary" id="boton1">Cliente</button>
-                    </div>
-                </div>
-            </div>
-
-                <div class="col-sm-4">
-                    <div class="input-group mb-3">
-                        <input value="<?php echo $id_receptor;?>" type="text" name="id_receptor" hidden>
-                        <input value="<?php echo $receptor;?>" type="text" class="form-control" placeholder="Receptor" id="pagina2" name="Receptor">
-                            <div class="input-group-append">
-                                <button  class="input-group-text btn-btn-primary" id="boton2" return false;>Receptor</button>
-                            </div>
-                    </div>
-                </div>           
-      </div>
-      <br>
-
-      <h1>Datos del paquete</h1>
-      <br>
-
-      <div class="form-row">
-          <input type="text" name="id_paquete" value="<?php echo $id_paquete;?>"hidden>
-            <div class="col-sm-4">
-            <label>Refecrencia 1</label>
-                <input value="<?php echo $referencia1;?>" type="text" name="direccion" class="form-control" placeholder="Referencia" require>
-            </div>
-            <div class="col-sm-4">
-            <label>Referencia 2</label>
-                <input value="<?php echo $referencia2;?>" type="text" name="direccionenvio" class="form-control" placeholder="Referencia">
-            </div>
-            <?php 
-            
-                $tipo=new envio();
-                $dt2=$tipo->VerRuta();
-            ?>
-            <div class="col-sm-4">
-                <label>Ruta</label>
-                <select name="id_ruta" id="" class="form-control">
-                    <option value="<?php echo $id_ruta?>"><?php echo $origen.'-'.$destino;?></option>
-                <?php
-                while($row=mysqli_fetch_array($dt2)){
-                    $valor=$row['id_rutas'];
-                    $texto=$row['ruta'];
-                    echo '<option  value="'.$valor.'">'.$texto.'</option>';
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <label>Descripción</label>
-                <br>
-                <textarea  calss='form-control' name="descripcion" id="" cols="110" rows="3"><?php echo $descripcion;?></textarea>
-            </div>
-      </div>
-        <br>
-      <h1>Datos del vehiculo</h1>
-      <br>
-      <div class="form-row">
-               <div class="col-sm-4">
-                  <div class="input-group mb-3">
-                      <input type="text" name="id_vehiculo" value="<?php echo $id_vehiculo;?>"hidden>
-                      <input type="text" name='tipo_vehiculo' value="<?php echo $vehiculo;?>"hidden>
-                    <input value="<?php echo $vehiculo;?>" type="text" class="form-control" placeholder="Vehiculo" id="pagina3" name="Vehiculo">
-                    <div class="input-group-append">
-                      <button class="input-group-text btn-btn-primary" id="boton3">Vehiculo1</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-sm-4">
-                  <div class="input-group mb-3">
-                    <input type="text" name="id_plataforma" value="<?php echo $id_plataforma;?>"hidden>   
-                    <input value="<?php echo $plataforma;?>" type="text" class="form-control" placeholder="Plataforma" id="pagina4" name="Plataforma" value="N/A">
-                    <div class="input-group-append">
-                      <button id="boton4" class="input-group-text btn-btn-primary">Plataforma</button>
-                    </div>
-                  </div>
-                     <div class="form-check-inline">
-                        <label class="form-check-label">
-                            <input name="retirar" type="checkbox" class="form-check-input" value="">Retira caja seca
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="input-group mb-3">
-                    <input type="text" name="id_piloto" value="<?php echo $id_piloto;?>"hidden>
-                    <input value="<?php echo $piloto;?>" type="text" class="form-control" placeholder="Piloto" id="pagina5" name="Piloto">
-                    <div class="input-group-append">
-                      <button id="boton5" class="input-group-text btn-btn-primary">Piloto</button>
-                    </div>
-                  </div>
-                </div>
-                
-      </div>
-      <br>
-      <div class="container-fluid col-sm-5">
-                <br>
-                <br>
-            <center>
-                <input type="submit" class="btn btn-success" value="Aceptar">
-                <a href="../views/listaviajes.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
-                <input type="reset" class="btn btn-danger" value="cancelar">
-                
-            </center>
-        </div>
-        <br>
-        <br>
-        <script src="../js/padre2.js"></script> 
-    </form>
-    <?php
+   
 }
 ?>
 </div>
