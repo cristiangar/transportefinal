@@ -66,37 +66,44 @@ if(isset($_SESSION['usuario']))
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
-            $id=$row['id_caja_seca'];
-            $placa=$row['no_placa'];
-            $tamanio=$row['tamaño'];
-            $caat=$row['numero_caat'];
-            $tipo=$row['tipo_remolque'];
-            $estado=$row['estado'];
+                $id_pago_piloto=$row['id_pago_piloto'];
+                $id_envio=$row['id_envio'];
+                $codigo_envio=$row['codigo_envio'];
+                $id_piloto=$row['id_piloto'];
+                $piloto=$row['piloto'];
+                $id_clientes=$row['id_clientes'];
+                $empresa=$row['empresa'];
+                $origen=$row['origen'];
+                $adelanto_piloto=$row['adelanto_piloto'];
+                $pendiente_piloto=$row['pendiente_piloto'];
+                $total_pago=$row['total_pago'];
+                $renta_caja=$row['$renta_caja'];
+                $combustible=$row['combustible'];
+                $tipo_cuenta=$row['tipo_cuenta'];
+                $banco=$row['banco'];
+                $no_cuenta=$row['no_cuenta'];
+                $nombre_cuenta=$row['nombre_cuenta'];
+                $tel_piloto=$row['tel_piloto'];
 
 
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $placa?></td>
-                    <td><?php echo $tamanio?></td>
-                    <td><?php echo $caat?></td>
-                    <td><?php echo $tipo?></td>
-                    <?php
-                        if($estado=='0'){
-                            ?>
-                            <td><span class="badge badge-success">Disponible</span></td>
-                            <?php
-                        }
-                        else
-                        {
-                            ?>
-                            <td><span class="badge badge-danger">Ocupado</span></td>
-                            <?php
-                        }
-                    ?>
-                    <td><center><a href="detalle_caja.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
-                    <td><center><a href="agregar_caja.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><center><a href="../controller/caja.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
+                    <td><?php echo $codigo_envio?></td>
+                    <td><?php echo $piloto?></td>
+                    <td><?php echo $empresa?></td>
+                    <td><?php echo $origen?></td>
+                    <td><?php echo $adelanto_piloto?></td>
+                    <td><?php echo $pendiente_piloto?></td>
+                    <td><?php echo $total?></td>
+                    <td><?php echo $renta_caja?></td>
+                    <td><?php echo $combustible?></td>
+                    <td><?php echo $tipo_cuenta?></td>
+                    <td><?php echo $banco?></td>
+                    <td><?php echo $no_cuenta?></td>
+                    <td><?php echo $nombre_cuenta?></td>
+                    <td><?php echo $tel_piloto?></td>
+                    <td><center><a href="detalle_caja.php?id=<?php echo $id?>"><button type="button" class="btn btn-info">Seleccionar</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
@@ -113,8 +120,7 @@ if(isset($_SESSION['usuario']))
 
                 ?>
                 <center>
-                    <a href="agregar_caja.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
-                    <a href="ViewVehiculos.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
+                    <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 </center>
                 <?php
   }
@@ -128,8 +134,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
-      <a href="agregar_caja.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
-      <a href="ViewVehiculos.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+      <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
   }
