@@ -4,11 +4,11 @@ include ('../Configuracion/config.php');
 class PagoPiloto
 {
 
-	public function Ingresar($nombre,$telefono,$telefono2,$correo,$nit,$cuenta,$banco)
+	public function Ingresar($id_pago,$boleta,$abono,$moneda)
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_cliente(0, '$nombre', '$telefono', '$telefono2', '$correo', '$nit', '$cuenta', '$banco', 'I', @pn_respuesta);";
+		$consulta= "call sp_deposito($id_pago, '$boleta', $abono, $moneda, 'I', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -21,7 +21,7 @@ class PagoPiloto
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/lista_clientes.php" </script>';
+						self.location="../views/ListaPendienteDeposito.php" </script>';
 	}
 
 	public function Ver()
@@ -29,7 +29,7 @@ class PagoPiloto
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_deposito(0, 'S', @pn_respuesta);";
+		$consulta= "call sp_deposito(0, '0', 0, 0, 'S', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;

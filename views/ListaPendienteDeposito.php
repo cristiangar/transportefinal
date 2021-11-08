@@ -41,7 +41,80 @@ if(isset($_SESSION['usuario']))
   include_once("../controller/pago_piloto.php");
   $resultado=$dt->num_rows;
   if($resultado>0){
-
+    if(isset($_POST['idenvio']))
+    {
+      $idEnvio =$_POST['idenvio'];
+      $idPago=$_POST['idpago'];
+      $idMonedas=$_POST['idMoneda'];
+      $tmonedas=$_POST['tmonedas'];
+      $cod_viaje=$_POST['cod_envio'];
+      $pilotos=$_POST['piloto'];
+      $bancos=$_POST['banco'];
+      $nocuenta=$_POST['no_cuenta'];
+      $adelantos=$_POST['adelanto'];
+      $pendientes=$_POST['pendiente'];
+      $totales=$_POST['total'];
+      ?>
+      <form method="POST" action="../controller/pago_piloto.php">
+        <div class="container-fluid">
+          <h1>Viaje seleccionado: <?php echo $cod_viaje;?></h1>
+          <div class="form-row">
+          <input  type="text" name="id_pagos" value="<?php echo $idPago;?>" hidden/>
+          <input  type="text" name="id_monedas" value="<?php echo $idMonedas;?>" hidden/>
+            <div class="col-sm-4"> 
+              <h4>Piloto</h4>
+              <input class="form-control" type="text" value="<?php echo $pilotos;?>" readonly />
+            </div>
+            <div class="col-sm-4"> 
+              <h4>Banco</h4>
+              <input class="form-control" type="text" value="<?php echo $bancos;?>" readonly />
+            </div>
+            <div class="col-sm-4"> 
+              <h4>No. Cuenta</h4>
+              <input class="form-control" type="text" value="<?php echo $nocuenta;?>" readonly />
+            </div>
+            <div class="col-sm-4"> 
+              <h4>Adelanto</h4>
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon1"><?php echo $tmonedas;?></span>
+                    </div>
+                    <input class="form-control" name="abono" type="text" value="<?php echo $adelantos;?>" readonly />
+                </div>
+            </div>
+            <div class="col-sm-4"> 
+              <h4>Pendiente</h4>
+              <div class="input-group mb-3">
+              <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon1"><?php echo $tmonedas;?></span>
+              </div>
+              <input class="form-control" type="text" value="<?php echo $pendientes;?>" readonly />
+              </div>
+            </div>
+            <div class="col-sm-4"> 
+              <h4>Total</h4>
+              <div class="input-group mb-3">
+                <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon1"><?php echo $tmonedas;?></span>
+                </div>
+                <input class="form-control" type="text" value="<?php echo $totales;?>" readonly />  
+              </div>
+            </div>
+            <div class="col-sm-4"> 
+              <h4>No. boleta deposito</h4>
+              <input class="form-control" name="boletas" type="text" plaseholder="NO. Boleta" require/>
+            </div>
+            <br>
+        </div>
+          <br>
+          <div class="col-sm-4"> 
+            <input type="submit" name="Deposito" class="btn btn-success" value="Depositar">
+          </div>
+        </div>
+        <br>
+      </form>
+      <?php
+    }
     ?>
       <h1>Viajes listos para depositar</h1>
       <br>
@@ -73,6 +146,8 @@ if(isset($_SESSION['usuario']))
                                     while ($row=mysqli_fetch_array($dt)) {
                                       $id_pago_piloto=$row['id_pago_piloto'];
                                       $id_envio=$row['id_envio'];
+                                      $idMoneda=$row['id_tipo_moneda'];
+                                      $tmoneda=$row['moneda'];
                                       $codigo_envio=$row['codigo_envio'];
                                       $id_piloto=$row['id_piloto'];
                                       $piloto=$row['piloto'];
@@ -105,7 +180,21 @@ if(isset($_SESSION['usuario']))
                                             <td><?php echo $no_cuenta;?></td>
                                             <td><?php echo $nombre_cuenta;?></td>
                                             <td><?php echo $tel_piloto;?></td>
-                                            <td><center><a href="listapilotopago.php?id=<?php echo $id?>&no=<?php echo $nombre?>&idp=<?php echo $idp?>&ad=<?php echo $adelanto?>&pe=<?php echo $pendiente?>&d=<?php echo $idenvio;?>"><button type="button" class="btn btn-primary">Seleccionar</button></a></center></td>
+                                            <form method="POST" action="ListaPendienteDeposito.php">
+                                              <input type="text" name="idpago" value="<?php echo $id_pago_piloto;?>" hidden>
+                                              <input type="text" name="idenvio" value="<?php echo $id_envio;?>"hidden>
+                                              <input type="text" name="idMoneda" value="<?php echo $idMoneda;?>"hidden>
+                                              <input type="text" name="tmonedas" value="<?php echo $tmoneda;?>"hidden>
+                                              <input type="text" name="cod_envio" value="<?php echo $codigo_envio;?>"hidden>
+                                              <input type="text" name="piloto" value="<?php echo $piloto;?>"hidden>
+                                              <input type="text" name="banco" value="<?php echo $banco;?>"hidden>
+                                              <input type="text" name="no_cuenta" value="<?php echo $no_cuenta;?>"hidden>
+                                              <input type="text" name="adelanto" value="<?php echo $adelanto_piloto;?>"hidden>
+                                              <input type="text" name="pendiente" value="<?php echo $pendiente_piloto;?>"hidden>
+                                              <input type="text" name="total" value="<?php echo $total_pago;?>"hidden>
+                                            <td><center><input type="submit" class="btn btn-success" value="Seleccionar"></center></td>
+                                            </form>
+                                            
                                         </tr>                                        
                                       <?php
                                     }
