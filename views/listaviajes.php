@@ -11,8 +11,9 @@ if(isset($_SESSION['usuario']))
     <title>Viajes</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="../css/index.css" rel="stylesheet"/>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/index.js"></script>
@@ -53,6 +54,7 @@ if(isset($_SESSION['usuario']))
               <td>Cliente</td>
               <td>Telefono cliente</td>
               <td>Estado envio</td>
+              <td>Imprimir</td>
               <td>Detalle del envio</td>
               <td>Eliminar</td>
             </thead>
@@ -72,7 +74,21 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $cliente?></td>
                     <td><?php echo $telefono?></td>
                     <td><?php echo $estado?></td>
-                    <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
+                    <?php 
+                      if($estado=="Autorizado"){
+                        ?>
+                        <td><center><a href="" class="text-white"><i class="fas fa-print">Imprimir </i></a></center></td>
+                        <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>    
+                        <?php
+                      }
+                      else{
+                        ?>
+                        <td></td>
+                        <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
+                        <?php
+
+                      }
+                    ?>
                     <td><center><a href="../controller/envio.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
                   </tr>
                  </tbody>

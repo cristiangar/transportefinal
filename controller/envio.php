@@ -89,6 +89,7 @@ if (isset($_GET['id']))
             $id = $_GET['id'];
             $ruta=new envio();
             $dt=$ruta->VerUno($id);
+            $dt3=$ruta->VerUno2($id);
 
         }
 

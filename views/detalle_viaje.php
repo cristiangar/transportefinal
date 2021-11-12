@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Generar envio</title>
+    <title>Detalle envio</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,6 +55,9 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
         $vehiculo=$row['tipo_vehiculo'];
         $piloto=$row['npiloto'];
         $placa=$row['no_placa'];
+        $fa=$row['fechaA'];
+        $renta_caja=$row['renta_caja'];
+        $combustible=$row['combustible'];
         if(($vehiculo=="Cabezal") or ($vehiculo=="cabezal") or ($vehiculo=='CABEZAL'))
         {
             $plataforma=$row['tipo'];
@@ -65,6 +68,7 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
             $plataforma="N/A";
             $placa_plataforma="N/A";
         }
+        $estado_envio=$row['estado_envio'];
     }
     ?>
     <h1>Datos del envio</h1>
@@ -159,11 +163,98 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
                 <div class="col-sm-4">
                     <label for="">No. placa de la plataforma</label>
                     <input type="text" class="form-control" placeholder="Plataforma" id="pagina4" name="Plataforma" value="<?php echo $placa_plataforma;?>" readonly>
-                </div>
-
-          
+                </div>     
       </div>
       <br>
+      <?php
+        if($estado_envio=="Autorizado"){
+            while($row=mysqli_fetch_array($dt3)){
+                $adelanto=$row['adelanto_piloto'];
+                $pendiente=$row['pendiente_piloto'];
+                $total=$row['total_pago'];
+                $id_tbl_pago_piloto=$row['id_pago_piloto'];
+                $combustible2=$row['combustible'];
+                $rentacaja2=$row['renta_caja'];
+                $tipo_moneda=$row['tipo'];
+                $total_extras=$total+$combustible2+$rentacaja2;
+            }
+            ?>
+            <h1>Datos extras</h1>
+            <div class="form-row">
+                <input type="text" name="id_tbl_pago_piloto" value="<?php echo $id_tbl_pago_piloto;?>"hidden>
+                <div class="col-sm-3">
+                    <label for="">Adelanto de piloto</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <button class="input-group-text btn-btn-primary" id="boton1"><?php echo $tipo_moneda; ?></button>
+                        </div>
+                        <input type="text" name="adelanto" value="<?php echo $adelanto;?>" class="form-control" readonly>   
+                    </div>
+                </div>   
+                <div class="col-sm-3">
+                    <label for="">Pendiente</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <button class="input-group-text btn-btn-primary" id="boton1"><?php echo $tipo_moneda; ?></button>
+                        </div>
+                        <input type="text" name="pendiente" value="<?php echo $pendiente;?>" class="form-control" readonly>  
+                    </div>
+                </div> 
+                <div class="col-sm-3">
+                    <label for="">Total a pagar al piloto</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <button class="input-group-text btn-btn-primary" id="boton1"><?php echo $tipo_moneda; ?></button>
+                        </div>
+                        <input type="text" name="total" value="<?php echo $total;?>" class="form-control" readonly>
+                    </div>
+                </div>                
+            </div>
+            <div class="form-row">
+            <div class="col-sm-3">
+                    <label for="">Renta de caja</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <button class="input-group-text btn-btn-primary" id="boton1"><?php echo $tipo_moneda; ?></button>
+                        </div>
+                        <input type="text" name="rentacaja" value="<?php echo $renta_caja;?>" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label for="">Combustible</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <button class="input-group-text btn-btn-primary" id="boton1"><?php echo $tipo_moneda; ?></button>
+                        </div>
+                        <input type="text" name="combustible" value="<?php echo $combustible;?>" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label for="">Total Asiganados al envio</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <button class="input-group-text btn-btn-primary" id="boton1"><?php echo $tipo_moneda; ?></button>
+                        </div>
+                        <input type="text" name="total_extra" value="<?php echo $total_extras;?>" class="form-control" readonly>
+                    </div>
+                </div>                
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col align-self-end">
+                        <h1>Total Asignado al envio: <?php echo $total_extras;?></h1>
+                        <br>
+                        <form action="">
+                            <button type="button" class="btn btn-warning" id="btnenviar">Modificar extras</button>
+                            <script src="../js/pago_piloto.js"></script> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php
+            
+        }
+      ?>
       <div class="container-fluid ">
                 <br>
                 <br>
@@ -209,7 +300,7 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
                         ?>
                             <center>
                             <a href="../views/listaviajes.php"><button type="button" class="btn btn-success" >Regresar</button></a>
-                            <a href="../views/detalle_viaje.php?id=<?php echo $_GET['id']?>"><button type="button" class="btn btn-warning" >Modificar</button></a>
+                            <a href="../views/detalle_viaje.php?id=<?php echo $_GET['id']?>"><button type="button" class="btn btn-warning" >Modificar Datos del envio</button></a>
 
                             </center>
 
@@ -394,7 +485,6 @@ else{
         </div>
         <br>
         <br>
-        <script src="../js/padre2.js"></script> 
     </form>
     <?php
 }

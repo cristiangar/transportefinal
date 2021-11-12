@@ -203,7 +203,12 @@ if(isset($_SESSION['usuario']))
                               <tfoot>
                                 <td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
                                 <td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
+                                <td></td>
+                                <td></td>
                                 <td id="indicador_paginas"></td>
+                                <td>
+                                </td>
+                                <td></td>
                                 <td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
                                 <td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
                               </tfoot>

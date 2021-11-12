@@ -66,6 +66,17 @@ class envio
 		return $dt;
 
 	}
+	
+	public function VerUno2($id)
+	{
+
+		$db = new datos();
+		$db->conectar();
+		$consulta= "call sp_envio(0,'0', '0', '0', $id, '0', 0, 0, 0, 0, 0, 0, 0, 'S2', @pn_respuesta);";
+		$dt3= mysqli_query($db->objetoconexion,$consulta);
+		$db->desconectar();
+		return $dt3;
+	}
 	public function Eliminar($id)
 	{
 
