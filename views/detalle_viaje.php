@@ -169,6 +169,7 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
       <?php
         if($estado_envio=="Autorizado"){
             while($row=mysqli_fetch_array($dt3)){
+                $id_envios=$row['id_envio'];
                 $adelanto=$row['adelanto_piloto'];
                 $pendiente=$row['pendiente_piloto'];
                 $total=$row['total_pago'];
@@ -245,6 +246,8 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
                         <h1>Total Asignado al envio: <?php echo $total_extras;?></h1>
                         <br>
                         <form action="">
+                            <input type="text" value="<?php echo $id_tbl_pago_piloto;?>" id="id_tbl_piloto" hidden>
+                            <input type="text" value="<?php echo $id_envios; ?>" id="id_tbl_envio" hidden>
                             <button type="button" class="btn btn-warning" id="btnenviar">Modificar extras</button>
                             <script src="../js/pago_piloto.js"></script> 
                         </form>
