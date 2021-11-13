@@ -21,6 +21,7 @@ if(isset($_SESSION['usuario']))
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
 </head>
+
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
     <a href="ViewAdministrador.php">
@@ -248,7 +249,17 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
                         <form action="">
                             <input type="text" value="<?php echo $id_tbl_pago_piloto;?>" id="id_tbl_piloto" hidden>
                             <input type="text" value="<?php echo $id_envios; ?>" id="id_tbl_envio" hidden>
-                            <button type="button" class="btn btn-warning" id="btnenviar">Modificar extras</button>
+                            <?php
+                                if(($rol=="Administrador") or ($rol=="ADMINISTRADOR") or ($rol=="administrador")){
+                                    ?>
+                                    <button type="button" class="btn btn-warning" id="btnenviar">Modificar extras</button>
+                                    <?php
+
+                                } 
+                                else{
+
+                                }
+                            ?>
                             <script src="../js/pago_piloto.js"></script> 
                         </form>
                     </div>

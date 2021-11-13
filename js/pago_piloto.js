@@ -7,6 +7,6 @@ boton_mod.addEventListener("click", (e) =>{
 	// Aquí todo el código que se ejecuta cuando se da click al botón
 	$id_piloto_pago=$mensaje1.value;
 	$id_envio=$mensaje2.value;
-	ventana_mod=window.open("../views/ModificarExtra.php?id_pago="+$id_piloto_pago+"&id_envio="+$id_envio+"&mod=0","miwin","width=1167,height=568,top=150px,left=250px,scrollbars=yes")
+	ventana_mod=window.open("../views/ModificarExtra.php?id_pago="+$id_piloto_pago+"&id_envio="+$id_envio+"&m%N/a","miwin","width=1167,height=568,top=150px,left=250px,scrollbars=yes")
 	e.preventDefault();
 });

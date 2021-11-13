@@ -13,20 +13,18 @@ if (isset($_GET['id']))
     else
     {
         if(isset($_GET['id']) and isset($_GET['mod'])){
-            $id=$_GET['id'];
-            $nombre=$_POST['nombre'];
-            $apellido=$_POST['apellido'];
-            $telefono=$_POST['telefono'];
-            $cui=$_POST['cui'];
-            $correo=$_POST['correo'];
-
-            $au =new empleado();
-            $au->Modificar($id,$nombre,$apellido,$cui,$telefono,$correo);
-
+            $id_pago_piloto=$_POST['id_tbl_pago'];
+            $id_envio=$_POST['id_tbl_envio'];
+            $adelanto=$_POST['adelanto'];
+            $pendiente=$_POST['pendiente'];
+            $renta_caja=$_POST['renta_caja'];
+            $combustible=$_POST['gasolina'];
+            $au =new PagoPiloto();
+            $au->Modificar($id_pago_piloto,$id_envio,$adelanto,$pendiente,$renta_caja,$combustible);
         }
         else{
-            $id = $_GET['id'];
-            $ruta=new empleado();
+            $id = $_GET['id_pago'];
+            $ruta=new PagoPiloto();
             $dt=$ruta->VerUno($id);
         }
     }

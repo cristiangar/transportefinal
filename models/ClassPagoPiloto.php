@@ -40,8 +40,8 @@ class PagoPiloto
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_cliente($id, '0', '0', '0', '0', '0', '0', '0', 'S1', @pn_respuesta);";
-		$dt= mysqli_query($db->objetoconexion,$consulta);
+		$consulta= "call sp_envio(0,'0', '0', '0', $id, '0', 0, 0, 0, 0, 0, 0, 0, 'S2', @pn_respuesta);";
+		$dt3= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
 
@@ -70,11 +70,11 @@ class PagoPiloto
 
 				
 
-		public function Modificar($id,$nombre,$telefono,$telefono2,$correo,$nit,$cuenta,$banco)
+		public function Modificar($id_pago_piloto,$id_envio,$adelanto,$pendiente,$renta_caja,$combustible)
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_cliente($id, '$nombre','$telefono', '$telefono2', '$correo', '$nit', '$cuenta', '$banco', 'U', @pn_respuesta);";
+		$consulta= "call sp_modificar_extra($id_pago_piloto, $id_envio, $adelanto, $pendiente, $renta_caja, $combustible, 'U', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -85,9 +85,7 @@ class PagoPiloto
 		$res=mysqli_fetch_array($consultar);
 		//
 		$texto=$res['@pn_respuesta'];
-		echo'<script language = javascript>
-						alert("'.$texto.'")
-						self.location="../views/lista_clientes.php" </script>';
+		echo'<script language = javascript>window.close(); opener.location.reload();</script>';
 	}
 
 	
