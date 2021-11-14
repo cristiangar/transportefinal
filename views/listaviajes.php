@@ -77,7 +77,7 @@ if(isset($_SESSION['usuario']))
                     <?php 
                       if($estado=="Autorizado"){
                         ?>
-                        <td><center><a href="" class="text-white"><i class="fas fa-print">Imprimir </i></a></center></td>
+                        <td><center><a href="../reportes/renvio.php?id=<?php echo $id;?>" class="text-white"><i class="fas fa-print">Imprimir </i></a></center></td>
                         <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>    
                         <?php
                       }

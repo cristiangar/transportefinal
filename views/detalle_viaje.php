@@ -231,15 +231,7 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
                         <input type="text" name="combustible" value="<?php echo $combustible;?>" class="form-control" readonly>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <label for="">Total Asiganados al envio</label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <button class="input-group-text btn-btn-primary" id="boton1"><?php echo $tipo_moneda; ?></button>
-                        </div>
-                        <input type="text" name="total_extra" value="<?php echo $total_extras;?>" class="form-control" readonly>
-                    </div>
-                </div>                
+               
             </div>
             <div class="container">
                 <div class="row">
