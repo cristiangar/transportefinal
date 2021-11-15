@@ -30,7 +30,7 @@ if(isset($_SESSION['usuario']))
             <a class="nav-link" > <?php echo $us;?></a>
         </li>
         <li class="navbar-item">
-            <a class="nav-link" href="../index.php">Cerrar sesión</a>
+            <a class="nav-link" href="../controller/login/login.php?log">Cerrar sesión</a>
         </li>
     </ul>
 

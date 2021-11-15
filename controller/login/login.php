@@ -1,17 +1,14 @@
 <?php
 include_once("../../models/login/classlogin.php");
 
-if (isset($_GET['id']))
+if (isset($_GET['log']))
 {
     
-    if (isset($_GET['id']) and isset($_GET['es'])) {//valida si es modificar o eliminar
-      /**elimina */
-        
-    }
-    else
-    {
-        /**modifica */
-    }
+    unset($_SESSION['usuario']);
+    unset($_SESSION['rol']);
+    unset($_SESSION['idusuario']);
+    echo'<script language = javascript>
+    self.location="../../index.php" </script>';
 
 }
 else
