@@ -27,7 +27,7 @@ class abonos
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_pago_piloto($id_pago_piloto, '$descripcion', $abono, $moneda, 'I', @pn_respuesta);";
+		$consulta= "call sp_pago_piloto($id_pago_piloto, '$descripcion', $abono, $moneda,0, 'I', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -50,7 +50,7 @@ class abonos
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_pago_piloto(0, '0', 0, 0, 'S', @pn_respuesta);";
+		$consulta= "call sp_pago_piloto(0, '0', 0, 0, 0, 'S', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
@@ -61,18 +61,18 @@ class abonos
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_pago_piloto($id, '0', 0, 0, 'S1', @pn_respuesta);";
+		$consulta= "call sp_pago_piloto($id, '0', 0, 0, 0, 'S1', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
 
 	}
-	public function Eliminar($id)
+	public function Eliminar($id_abono,$id_tbl_pago_piloto)
 	{
 
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_cliente($id, '0', '0', '0', '0', '0', '0', '0', 'D', @pn_respuesta);";
+		$consulta= "call sp_pago_piloto($id_tbl_pago_piloto, '0', 0, 0, $id_abono, 'D', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -85,7 +85,7 @@ class abonos
 		$texto=$res['@pn_respuesta'];
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/lista_clientes.php" </script>';
+						self.location="../views/ListaPagoPilotos.php" </script>';
 
 	}
 

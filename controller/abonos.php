@@ -5,9 +5,10 @@ if (isset($_GET['id']))
 {
     
     if (isset($_GET['id']) and isset($_GET['es'])) {//valida si es modificar o eliminar
-        $id=$_GET['id'];
-        $au =new cliente();
-        $au->  Eliminar($id);
+        $id_abono=$_GET['id'];
+        $id_tbl_pago_piloto=$_GET['es'];
+        $au =new abonos();
+        $au->Eliminar($id_abono,$id_tbl_pago_piloto); 
         
     }
     else

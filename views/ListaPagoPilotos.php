@@ -56,7 +56,7 @@ if(isset($_SESSION['usuario']))
               <td>Estado del pago</td>
               <td>Estado de deposito</td>
               <td>Abonos</td>
-              <td>Modificar</td>
+
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
@@ -130,7 +130,7 @@ if(isset($_SESSION['usuario']))
                         <?php
                       }
                     ?>
-                    <td><center><a href="agregar_piloto.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
+                    
                     
                   </tr>
                  </tbody>

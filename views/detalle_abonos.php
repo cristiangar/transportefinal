@@ -65,6 +65,7 @@ if(isset($_SESSION['usuario']))
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
+                $id_abono=$row['id_abono_piloto'];
                 $fecha=$row['fecha_abono'];
                 $descripcion=$row['descripcion'];
                 $abono=$row['abono'];
@@ -76,7 +77,7 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $fecha;?></td>
                     <td><?php echo $descripcion;?></td>
                     <td><?php echo $abono;?></td>
-                    <td><center><a href="detalle_abonos.php?id=<?php echo $id_pago_piloto;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>     
+                    <td><center><a href="../controller/abonos.php?id=<?php echo $id_abono;?>&es=<?php echo $id;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>     
                   </tr>
                  </tbody>
             <?php
