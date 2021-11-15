@@ -5,11 +5,11 @@ include ('../Configuracion/config.php');
 class encabezado
 {
 
-        public function IngresarEncabezado2($total,$anticipo,$id_envio, $id_clienteenvio)
+    public function IngresarEncabezado2($total,$anticipo,$id_envio, $id_clienteenvio,$tipo_moneda)
     {
         $bd = new datos();
         $bd->conectar();
-        $consulta= "call sp_encabezado(0, $id_clienteenvio, $id_envio, $anticipo, $total, 'Pendiente', 'I', '1', @pn_respuesta);";
+        $consulta= "call sp_encabezado(0, $id_clienteenvio, $id_envio, $anticipo, $total,$tipo_moneda, 'I', '1', @pn_respuesta);";
         $dt= mysqli_query($bd->objetoconexion,$consulta);
 
         $salida="SELECT @pn_respuesta";
@@ -25,7 +25,7 @@ class encabezado
         $texto=$res['@pn_respuesta'];
         echo'<script language = javascript>
                         alert("'.$texto.'")
-                        self.location="../views/encabezado.php" </script>';
+                        self.location="../views/lista_encabezados.php" </script>';
 
 
     }
@@ -35,7 +35,7 @@ class encabezado
 
         $db = new datos();
         $db->conectar();
-        $consulta= " select a.id_encabezado, a.total, d.saldo,a.fecha, a.estado_factura, a.id_cliente, concat(c.nombre,' ',c.apellido) as cliente, a.id_envio, e.codigo_envio 
+        $consulta= " select a.id_encabezado, a.total, d.saldo,a.fecha, a.estado_factura, a.id_cliente, concat(c.nombre,' ',c.apellido) as cliente, a.id_envio, e.codigo_envio,a.id_tipo_moneda 
             from encabezado as a 
             inner join cxc as d on a.id_encabezado=d.id_encabezado
             inner join clientes as c on a.id_cliente=c.id_cliente
@@ -76,7 +76,7 @@ class encabezado
 
         $bd = new datos();
         $bd->conectar();
-        $consulta= "call sp_encabezado($id, 0, 0, 0, 0, '0', 'D', '0', @pn_respuesta);";
+        $consulta= "call sp_encabezado($id, 0, 0, 0, 0, 0, 'D', '0', @pn_respuesta);";
         $dt= mysqli_query($bd->objetoconexion,$consulta);
 
         $salida="SELECT @pn_respuesta";
@@ -91,7 +91,7 @@ class encabezado
 
         echo'<script language = javascript>
                         alert("'.$texto.'")
-                        self.location="../views/encabezado.php" </script>';   
+                        self.location="../views/lista_encabezados.php" </script>';   
 
     }
 

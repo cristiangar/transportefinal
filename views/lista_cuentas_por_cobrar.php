@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Encabezado</title>
+    <title>Cuentas por Cobrar</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,56 +38,51 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../controller/encabezado.php");
-  $resultado=$dt->num_rows;
+  include_once("../controller/cuentas_por_cobrar.php");
+  $resultado=$dt2->num_rows;
   if($resultado>0){
     ?>
-      <h1>Encabezado</h1>
-      <center>
-        <h2>Cuentas por Cobrar</h2>
-      </center>
+      <h1>Cuentas por Cobrar</h1>
       <br>
       <div class="container mt-3">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
-              <td>Codigo Envio</td>
+              <td>No. de Viaje</td>
               <td>Cliente</td>
-              <td>Moneda</td>
               <td>Total</td>
               <td>Saldo</td>
-              <td>Fecha</td>
+              <td>Fecha Inicial</td>
               <td>Estado de la Cuenta</td>
-              <td>Lista de Detalles</td>
-              <td>Agregar Detalle</td>
-              <td>Eliminar Detalle</td>
+              <td>Lista de Abonos</td>
+              <td>Nuevo Abono</td>
             </thead>
       <?php
-          while ($row=mysqli_fetch_array($dt)) {
-            $id=$row['id_encabezado'];
-            $envio=$row['codigo_envio'];
-            $cliente=$row['cliente'];
-            $total=$row['total'];
+          while ($row=mysqli_fetch_array($dt2)) {
+            $id=$row['id_cuentas_por_cobrar'];
+            $cliente=$row['empresa'];
             $id_moneda=$row['id_tipo_moneda'];
             $tipo_moneda=$row['tipo'];
+            $total=$row['total'];
             $saldo=$row['pendiente'];
-            $fecha=$row['fecha'];
+            $fecha_inicio=$row['fecha'];
             $estado_factura=$row['estado_factura'];
+            $noviaje=$row['codigo_envio'];
             
-            $datos=array("cliente"=>$cliente,"total"=>$total,"estadof"=>$estado_factura,"saldo"=>$saldo,"envio"=>$envio,"id_moneda"=>$id_moneda,"tipo_moneda"=>$tipo_moneda);
-            $comprimida=serialize($datos);
+            $datos2=array("cliente"=>$cliente,"total"=>$total,"estadof"=>$estado_factura,"saldo"=>$saldo,"envio"=>$noviaje,"id_moneda"=>$id_moneda,"tipo_moneda"=>$tipo_moneda);
+            $comprimida=serialize($datos2);
             $comprimida=urlencode($comprimida);
-            
+
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $envio?></td>
+                    <td><?php echo $noviaje?></td>
                     <td><?php echo $cliente?></td>
                     <td><?php echo $tipo_moneda?></td>
                     <td><?php echo $total?></td>
                     <td><?php echo $saldo?></td>
-                    <td><?php echo $fecha?></td>
+                    <td><?php echo $fecha_inicio?></td>
                     
                     <?php
                       if($estado_factura == 1){
@@ -97,14 +92,13 @@ if(isset($_SESSION['usuario']))
                       }
                       else{
                         ?>
-                        <td><span class="badge badge-danger">Pendiente de Pago</span></td>
+                        <td><span class="badge badge-danger">Pendiente de pago</span></td>
                         <?php
                       }
                     ?>
                     
-                    <td><center><a href="lista_detalle.php?id=<?php echo $id?>&envio=<?php echo $envio;?>&datos=<?php echo $comprimida;?>"><button type="button" class="btn btn-info">Detalles</button></a></center></td>
-                    <td><center><a href="nuevo_detalle.php?id=<?php echo $id?>&tipo_moneda=<?php echo $tipo_moneda?>&id_moneda=<?php echo $id_moneda?>"><button type="button" class="btn btn-primary">Agregar Detalle</button></a></center></td>
-                    <td><a href="../controller/nuevo_encabezado.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                    <td><center><a href="lista_abonos_cxc.php?id=<?php echo $id?>&datos2=<?php echo $comprimida;?>"><button type="button" class="btn btn-info">Detalle de Abonos</button></a></center></td>
+                    <td><center><a href="nuevo_abono.php?id=<?php echo $id?>&id_moneda=<?php echo $id_moneda?>&tipo_moneda=<?php echo $tipo_moneda?>"><button type="button" class="btn btn-primary">Nuevo Abono</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
@@ -120,8 +114,10 @@ if(isset($_SESSION['usuario']))
                 echo '</table>';
                 ?>
             <center>
-                <a href="../envio/nuevo_encabezado.php"><button type="button" class="btn btn-success" >Nuevo Encabezado</button></a> 
-                <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>                
+                <a href="../envio/nuevo_encabezado.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a> 
+                <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+                
+                
             </center>
             <?php
   }
@@ -137,8 +133,8 @@ if(isset($_SESSION['usuario']))
       <h1>No hay datos ingresados</h1>
       <br>
       <br>
-      <a href="../envio/nuevo_encabezado.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a> 
-      <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+      <a href="../envio/nuevo_encabezado.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
+      <a href="secritaria.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
   }

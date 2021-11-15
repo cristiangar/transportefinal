@@ -65,7 +65,7 @@ if(isset($_SESSION['usuario']))
             <div class="form-row">
                 <div class="col-sm-4">
                     <label>Nombre del Cliente</label>
-                    <input type="text" name="Clientes" class="form-control" placeholder="Nombre del Cliente" id="pagina14" return false; require>
+                    <input type="text" name="Clientes" class="form-control" placeholder="Nombre del Cliente" id="pagina14" return false; require disabled>
                 </div>
             </div>
             <br>
@@ -80,6 +80,15 @@ if(isset($_SESSION['usuario']))
                     <label>Anticipo</label>
                     <input type="text" name="anticipo" class="form-control" placeholder="Anticipo del Viaje" require>
                 </div>
+
+                <div class="col-sm-4">
+                <label>Tipo de Moneda</label>
+                <select name="tipo_moneda" id="" class="form-control">
+                    <option value='1'>Quetzales</option>
+                    <option value='2'>Dolares</option>
+                </select>
+            </div>       
+
             </div>
       </div>
       <br>

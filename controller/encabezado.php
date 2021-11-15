@@ -13,13 +13,14 @@ if (isset($_GET['id2']))
     }
     else 
     {
-        if(isset($_GET['id']) and isset($_GET['mod'])and isset($_GET['id2'])){
+        if(isset($_GET['id']) and isset($_GET['mod'])and isset($_GET['id2'])and isset($_GET['id_moneda'])){
         $id2=$_GET['id2'];
         $id=$_GET['id'];
+        $id_moneda=$_GET['id_moneda'];
         $descripcion=$_POST['descripcion'];
         $subtotal=$_POST['subtotal'];
         $au =new encabezado();
-        $au->ModificarDetalle($id,$id2,$descripcion,$subtotal);
+        $au->ModificarDetalle($id,$id2,$descripcion,$subtotal,$id_moneda);
         }
     }
 
@@ -30,12 +31,13 @@ else
 
     $cantidad=$_POST['subtotal'];
     $id=$_GET['id'];
+    $id_moneda=$_GET['id_moneda'];
     $descripcion=$_POST['descripcion'];
 
     /*echo $cantidad;*/
     
         $au =new encabezado();
-        $au->IngresarEncabezado($cantidad,$id,$descripcion);
+        $au->IngresarEncabezado($cantidad,$id,$descripcion,$id_moneda);
 
     }
     else

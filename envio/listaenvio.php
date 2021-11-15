@@ -59,16 +59,15 @@ if(isset($_SESSION['usuario']))
             $id=$row['id_envio'];
             $codigo=$row['codigo_envio'];
             $fenvio=$row['fecha_envio'];
-            $cliente=$row['cliente'];
-            $idcliente=$row['id_cliente'];
+            $cliente=$row['empresa'];
+            $idcliente=$row['id_clientes'];
             $receptor=$row['receptor'];
-            $autorizacion=$row['autorizacion'];
+            $autorizacion=$row['autorizado'];
             ?>
                   <tbody id="myTable">
                   <tr>
                     <td><?php echo $codigo?></td>
                     <td><?php echo $fenvio?></td>
-                    <td><?php echo $fentrega?></td>
                     <td><?php echo $cliente?></td>
                     <td><?php echo $receptor?></td>
                     <?php
