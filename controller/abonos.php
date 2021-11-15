@@ -46,8 +46,14 @@ else
     }
     else
     {
-        $abono=new abonos();
-        $dt=$abono->Ver();
+        if(isset($_POST['abono'])){
+            /*$au =new PagoPiloto();
+            $au->IngresarAbono($id,$descripcion,$abono,$moneda);  */
+        }
+        else{
+            $abono=new abonos();
+            $dt=$abono->Ver();
+        }
     }
 
 }

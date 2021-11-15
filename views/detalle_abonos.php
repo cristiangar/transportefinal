@@ -103,6 +103,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
+      <a href="AgregarAbono.php?id=<?php echo $id;?>"><button type="button" class="btn btn-warning btn-lg" >Agregar abono</button></a>
       <a href="ListaPagoPilotos.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php

@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Personal</title>
+    <title>Pago pilotos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,6 +54,7 @@ if(isset($_SESSION['usuario']))
               <td>Total a pagar</td>
               <td>Pendiente de pago</td>
               <td>Estado del pago</td>
+              <td>Estado de deposito</td>
               <td>Abonos</td>
               <td>Modificar</td>
             </thead>
@@ -65,14 +66,27 @@ if(isset($_SESSION['usuario']))
                 $nombre=$row['nombre'];
                 $total=$row['total_pago'];
                 $pendiente=$row['pendiente_piloto'];
+                $adelanto=$row['adelanto_piloto'];
                 $estado=$row['estado_de_pago'];
+                $estado_deposito=$row['estado_deposito'];
             ?>
                   <tbody id="myTable">
                   <tr>
                     <td><?php echo $codigo_envio?></td>
                     <td><?php echo $nombre?></td>
                     <td><?php echo $total?></td>
-                    <td><?php echo $pendiente?></td>
+                    <?php
+                      if($estado_deposito=='0'){
+                        ?>
+                        <td><?php echo $total;?></td>
+                        <?php
+                      }
+                      else{
+                        ?>
+                        <td><?php echo $pendiente;?></td>
+                        <?php
+                      }
+                    ?>
                     <?php 
                         if($estado=='0'){
                             ?>
@@ -84,6 +98,17 @@ if(isset($_SESSION['usuario']))
                             ?>
                             <td><span class="badge badge-danger">Pendinte de pago</span></td>
                             <?php
+                        }
+                        if($estado_deposito=='0'){
+                          ?>
+                          <td><span class="badge badge-danger">Pendinte de deposito</span></td>
+                          <?php
+                        }
+                        else
+                        {
+                          ?>
+                          <td><span class="badge badge-success">Deposito realizado</span></td>
+                          <?php 
                         }
                     ?>
                     <td><center><a href="detalle_abonos.php?id=<?php echo $id_pago_piloto;?>"><button type="button" class="btn btn-info">Abonos</button></a></center></td>
