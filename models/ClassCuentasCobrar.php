@@ -8,7 +8,7 @@ class cuenta
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_abonos(0, $cantidad, $id, 'I', @pn_respuesta);";
+		$consulta= "call sp_abonos_cxc(0, $cantidad, $id, 'I', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";

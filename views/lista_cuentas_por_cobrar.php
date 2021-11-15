@@ -51,6 +51,7 @@ if(isset($_SESSION['usuario']))
             <thead>
               <td>No. de Viaje</td>
               <td>Cliente</td>
+              <td>Moneda</td>
               <td>Total</td>
               <td>Saldo</td>
               <td>Fecha Inicial</td>

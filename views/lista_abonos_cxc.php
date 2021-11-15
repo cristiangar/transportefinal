@@ -103,7 +103,7 @@ if(isset($_SESSION['usuario']))
                 echo '</table>';
             ?>
             <center>
-                <a href="nuevo_abono.php?id=<?php echo $id?>"><button type="button" class="btn btn-primary">Abonar</button></a>
+                <a href="nuevo_abono.php?id=<?php echo $id?>&id_moneda=<?php echo $id_moneda2?>&tipo_moneda=<?php echo $tipo_moneda2?>"><button type="button" class="btn btn-primary">Abonar</button></a>
                 
                 <a href="lista_cuentas_por_cobrar.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 
