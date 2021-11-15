@@ -47,8 +47,33 @@ else
     else
     {
         if(isset($_POST['abono'])){
-            /*$au =new PagoPiloto();
-            $au->IngresarAbono($id,$descripcion,$abono,$moneda);  */
+            $id_pago_piloto=$_POST['id_pago_piloto'];
+            $abono=$_POST['abono'];
+            $moneda=$_POST['moneda'];
+            $total=$_POST['total'];
+            $pendiente=$_POST['pendiente'];
+            $descripcion=$_POST['descripcion'];
+            if($abono>$total){
+                ?>
+                <script language = javascript>
+                self.location="../views/Agregar_Abono.php?id=<?php echo $id_pago_piloto;/*id pago del piloto*/?>&moneda=<?php echo $moneda;?>&t=<?php echo $total;?>&p=<?php echo $pendiente;?>&error" 
+                </script>
+                <?php
+            }
+            else{
+                if($abono<=$pendiente)
+                {
+                    $au =new abonos();
+                    $au->IngresarAbono($id_pago_piloto,$descripcion,$abono,$moneda); 
+                }
+                else{
+                    ?>
+                    <script language = javascript>
+                    self.location="../views/Agregar_Abono.php?id=<?php echo $id_pago_piloto;/*id pago del piloto*/?>&moneda=<?php echo $moneda;?>&t=<?php echo $total;?>&p=<?php echo $pendiente;?>&error2" 
+                    </script>
+                    <?php
+                }
+            }
         }
         else{
             $abono=new abonos();

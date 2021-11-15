@@ -69,21 +69,23 @@ if(isset($_SESSION['usuario']))
                 $adelanto=$row['adelanto_piloto'];
                 $estado=$row['estado_de_pago'];
                 $estado_deposito=$row['estado_deposito'];
+                $id_moneda=$row['id_tipo_moneda'];
+                $moneda=$row['moneda'];
             ?>
                   <tbody id="myTable">
                   <tr>
                     <td><?php echo $codigo_envio?></td>
                     <td><?php echo $nombre?></td>
-                    <td><?php echo $total?></td>
+                    <td><?php echo $moneda." ".$total?></td>
                     <?php
                       if($estado_deposito=='0'){
                         ?>
-                        <td><?php echo $total;?></td>
+                        <td><?php echo $moneda." ".$total;?></td>
                         <?php
                       }
                       else{
                         ?>
-                        <td><?php echo $pendiente;?></td>
+                        <td><?php echo $moneda." ".$pendiente;?></td>
                         <?php
                       }
                     ?>
@@ -111,7 +113,23 @@ if(isset($_SESSION['usuario']))
                           <?php 
                         }
                     ?>
-                    <td><center><a href="detalle_abonos.php?id=<?php echo $id_pago_piloto;?>"><button type="button" class="btn btn-info">Abonos</button></a></center></td>
+                    <?php 
+                      if($estado_deposito=='0'){
+                        ?>
+                        <td><center><a href="#"data-toggle="tooltip" title="Realice un deposito"><button type="button"class="btn btn-danger">Abonos</button></a></center></td>                        
+                        <script>
+                        $(document).ready(function(){
+                          $('[data-toggle="tooltip"]').tooltip();   
+                        });
+                        </script>
+                        <?php
+                      }
+                      else{
+                        ?>
+                          <td><center><a href="detalle_abonos.php?id=<?php echo $id_pago_piloto;?>&moneda=<?php echo $id_moneda;?>"><button type="button" class="btn btn-info">Abonos</button></a></center></td>
+                        <?php
+                      }
+                    ?>
                     <td><center><a href="agregar_piloto.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
                     
                   </tr>

@@ -23,11 +23,11 @@ class abonos
 						alert("'.$texto.'")
 						self.location="../views/ListaPendienteDeposito.php" </script>';
 	}
-	public function IngresarAbono($id,$descripcion,$abono,$moneda)
+	public function IngresarAbono($id_pago_piloto,$descripcion,$abono,$moneda)
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_pago_piloto($id, '$descripcion', $abono, $moneda, 'I', @pn_respuesta);";
+		$consulta= "call sp_pago_piloto($id_pago_piloto, '$descripcion', $abono, $moneda, 'I', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -38,9 +38,11 @@ class abonos
 		$res=mysqli_fetch_array($consultar);
 		//
 		$texto=$res['@pn_respuesta'];
-		echo'<script language = javascript>
-						alert("'.$texto.'")
-						self.location="../views/ListaPagoPilotos.php" </script>';
+		?>
+		<script language = javascript>
+						alert("<?php echo $texto;?>")
+						self.location="../views/detalle_abonos.php?id=<?php echo $id_pago_piloto;?>&moneda=<?php echo $moneda;?>" </script>
+						<?php
 	}
 
 	public function Ver()

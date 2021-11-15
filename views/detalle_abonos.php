@@ -39,11 +39,16 @@ if(isset($_SESSION['usuario']))
 <div class="container-fluid">
 <?php
   include_once("../controller/abonos.php");
-  $id=$_GET['id'];
+  $id=$_GET['id'];/**id del pago de pilotos */
+  $id_moneda=$_GET['moneda'];
   $abono=new abonos();
   $dt=$abono->VerUno($id);
   $resultado=$dt->num_rows;
   if($resultado>0){
+   /* while($row2=mysqli_fetch_array($dt)){
+      $pendite=$row2['pendiente_piloto'];
+      $total=$row2['total_pago'];
+    }*/
     ?>
       <h1>abonos</h1>
       <br>
@@ -55,7 +60,7 @@ if(isset($_SESSION['usuario']))
               <td>Fecha abono</td>
               <td>Descripción</td>
               <td>Abono</td>
-              <td>Modificar</td>
+              
               <td>Eliminar</td>
             </thead>
       <?php
@@ -63,32 +68,30 @@ if(isset($_SESSION['usuario']))
                 $fecha=$row['fecha_abono'];
                 $descripcion=$row['descripcion'];
                 $abono=$row['abono'];
+                $total=$row['total_pago'];
+                $pendite=$row['pendiente_piloto'];
             ?>
                   <tbody id="myTable">
                   <tr>
                     <td><?php echo $fecha;?></td>
                     <td><?php echo $descripcion;?></td>
                     <td><?php echo $abono;?></td>
-                    <td><center><a href="agregar_piloto.php?id=<?php echo $id;?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><center><a href="detalle_abonos.php?id=<?php echo $id_pago_piloto;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
-                    
+                    <td><center><a href="detalle_abonos.php?id=<?php echo $id_pago_piloto;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>     
                   </tr>
                  </tbody>
             <?php
 
           }
-               echo '<tfoot>';
-                echo  '<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>';
-                echo  '<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>';
-     
-                echo  '<td id="indicador_paginas"></td>';
-                echo  '<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>';
-                echo  '<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>';
-                echo'</tfoot>';
-                echo '</table>';
 
+                echo '</table>';
                 ?>
+                      <br>
+                      <h1>Tolal: <?php echo $total;?></h1>
+                      <br>
+                      <h2>Pendiente: <?php echo $pendite;?></h2>
+                      <br>
                 <center>
+                    <a href="Agregar_abono.php?id=<?php echo $id;/*id pago del piloto*/?>&moneda=<?php echo $id_moneda;?>&t=<?php echo $total;?>&p=<?php echo $pendite;?>"><button type="button" class="btn btn-success" >Agregar abono</button></a>
                     <a href="ListaPagoPilotos.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 </center>
                 <?php
@@ -103,8 +106,8 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
-      <a href="AgregarAbono.php?id=<?php echo $id;?>"><button type="button" class="btn btn-warning btn-lg" >Agregar abono</button></a>
-      <a href="ListaPagoPilotos.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+       <a href="Agregar_abono.php?id=<?php echo $id;?>&moneda=<?php echo $id_moneda;?>"><button type="button" class="btn btn-warning btn-lg" >Agregar abono</button></a>
+       <a href="ListaPagoPilotos.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
   }
