@@ -162,7 +162,7 @@ if(isset($_SESSION['usuario']))
                             <a href="lista_encabezados.php">
                             <img class="img-fluid" src="../imagenes/reporte.png" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
                             </a>
-                            <h1>Generar recibo</h1>
+                            <h1>Generar Cuenta Por Cobrar</h1>
                         </div>
                     </div>
                 </div>
