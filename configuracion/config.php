@@ -3,7 +3,7 @@ class Datos{
 	private $servidor='localhost';
 	private $usuario='root';
 	private $pass='';
-	private $db='transportefinal';
+	private $db='transportefn';
 	public $objetoconexion;
 	public function conectar()
 	{

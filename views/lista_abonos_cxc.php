@@ -93,7 +93,7 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $cantidad?></td>
                     <td><?php echo $fecha?></td>
            
-                    <td><a href="../controller/cuentas.php?id2=<?php echo $id2?>&es=E&id=<?php echo $id?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                    <td><a href="../controller/cuentas_por_cobrar.php?id2=<?php echo $id2?>&es=E&id=<?php echo $id?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
                   </tr>
                  </tbody>
             <?php

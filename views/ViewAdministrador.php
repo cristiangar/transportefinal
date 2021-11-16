@@ -170,7 +170,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="cuentas.php">
+                    <a href="lista_cuentas_por_cobrar.php">
                     <img class="img-fluid" src="../imagenes/cxc.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
                     </a>
                     <h1>Estado cuenta del cliente</h1>
@@ -239,7 +239,7 @@ if(isset($_SESSION['usuario']))
         <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
-                    <a href="../Reportes/BusquedaReporte.php">
+                    <a href="../reportes/busqueda_reporte.php">
                     <img class="img-fluid" src="../imagenes/Reporte.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
                     </a>
                     <h1>Reportes</h1>

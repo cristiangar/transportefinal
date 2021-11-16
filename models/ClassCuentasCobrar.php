@@ -37,7 +37,7 @@ from cuentas_por_cobrar as a
 inner join tipo_moneda as e on a.id_tipo_moneda=e.id_tipo_moneda
 inner join envio as b on a.id_envio=b.id_envio 
 inner join clientes as c on b.id_clientes=c.id_clientes
-inner join encabezado as d on b.id_envio=d.envio_id_envio where a.estado_eliminado=1 and a.estado_cuenta=0 and d.estado_eliminado=1;";
+inner join encabezado as d on b.id_envio=d.envio_id_envio where a.estado_eliminado=1 and d.estado_eliminado=1;";
     		/*and a.estado_factura='Pendiente'*/
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
@@ -73,7 +73,7 @@ inner join encabezado as d on b.id_envio=d.envio_id_envio where a.estado_elimina
 
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_abonos($id, 0, $cxc, 'D', @pn_respuesta);";
+		$consulta= "call sp_abonos_cxc($id, 0, $cxc, 'D', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -88,7 +88,7 @@ inner join encabezado as d on b.id_envio=d.envio_id_envio where a.estado_elimina
 
 		echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/cuentas.php" </script>';   
+						self.location="../views/lista_cuentas_por_cobrar.php" </script>';   
 
 	}
 
