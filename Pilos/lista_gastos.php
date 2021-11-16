@@ -38,54 +38,54 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  include_once("../controller/lista_viajes_piloto.php");
+  include_once("../controller/gastos_piloto.php");
   $resultado=$dt->num_rows;
   if($resultado>0){
     ?>
-      <h1>Lista de Viajes a terminar</h1>
+      <h1>Lista de Viajes</h1>
       <br>
       <div class="container-fluid">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
-              <td>Codigo envio</td>
-              <td>Origen</td>
-              <td>Destino</td>
-              <td>Empresa</td>
-              <td>Telefono 1</td>
-              <td>Telefono 2</td>
-              <td>Estado del viaje</td>
-              <td>Terminar</td>
+                <td>Fecha</td>
+                <td>Descripción</td>
+                <td>Precio</td>
+                <td>Estado</td>
+                <td>Eliminar</td>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
-                $id_envio=$row['id_envio'];
-                $codigo=$row['codigo_envio'];
-                $origen=$row['origen'];
-                $destino=$row['destino'];
-                $empresa=$row['empresa'];
-                $tel1=$row['telefono_1'];
-                $tel2=$row['telefono_2'];
-                $estado=$row['estado_envio'];
-                $estadobit=$row['estado_activo'];
+                    $id_envio=$row['id_envio'];
+                    $id_gasto_del_piloto=$row['id_gastos_del_piloto'];
+                    $fecha=$row['fecha_del_gasto'];
+                    $descripcion=$row['descripcion'];
+                    $precio=$row['precio'];
+                    $estado=$row['estado_del_gasto'];
+                    $moneda=$row['tipo'];
+
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $codigo;?></td>
-                    <td><?php echo $origen;?></td>
-                    <td><?php echo $destino;?></td>
-                    <td><?php echo $empresa;?></td>
-                    <td><?php echo $tel1;?></td>
-                    <td><?php echo $tel2;?></td>
+                    <td><?php echo $fecha;?></td>
+                    <td><?php echo $descripcion;?></td>
+                    <td><?php echo $moneda." ".$precio;?></td>
                     <td><?php echo $estado;?></td>
-                    <td><center><a href="../controller/lista_viajes_piloto.php?id=<?php echo $id_envio;?>&ter"><button type="button" class="btn btn-info">Terminar</button></a></center></td>
+                    <td><a href="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&es=<?php echo $id_envio;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
                   </tr>
                  </tbody>
             <?php
 
           }
-          echo '</table>';
+               echo '<tfoot>';
+                echo  '<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>';
+                echo  '<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>';
+                echo  '<td id="indicador_paginas"></td>';
+                echo  '<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>';
+                echo  '<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>';
+                echo'</tfoot>';
+                echo '</table>';
                 ?>
                     <center>
                     <br>
@@ -115,7 +115,16 @@ if(isset($_SESSION['usuario']))
 </div>
 </body>
 
-
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
 </html>
 <?php

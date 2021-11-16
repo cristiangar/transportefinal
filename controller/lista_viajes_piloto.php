@@ -19,9 +19,17 @@ if (isset($_GET['id']))
             $dt=$ruta->Ver($id);
         }
         else{
-            $id=$_GET['id'];
-            $au =new envio_piloto();
-            $au->Ingresar($id);
+            if(isset($_GET['id']) and isset($_GET['ter'])){
+                $id=$_GET['id'];
+                $au =new envio_piloto();
+                $au->Terminar($id);
+            }
+            else{
+                $id=$_GET['id'];
+                $au =new envio_piloto();
+                $au->Ingresar($id);
+
+            }
 
         }
     

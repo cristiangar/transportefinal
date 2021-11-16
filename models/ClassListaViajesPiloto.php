@@ -25,6 +25,28 @@ class envio_piloto
 
 
 	}
+	public function Terminar($id)
+	{
+		$bd = new datos();
+		$bd->conectar();
+		$consulta= "call sp_envio_pilotos($id, 'T', @pn_respuesta);";
+		$dt= mysqli_query($bd->objetoconexion,$consulta);
+
+		$salida="SELECT @pn_respuesta";
+		$consultar=mysqli_query($bd->objetoconexion,$salida);
+		
+		$bd->desconectar();
+
+		$res=mysqli_fetch_array($consultar);
+
+		//
+		$texto=$res['@pn_respuesta'];
+		echo'<script language = javascript>
+						alert("'.$texto.'")
+						self.location="../views/ViewAdministrador.php" </script>';
+
+
+	}
 
 	public function Ver($id)
 	{
