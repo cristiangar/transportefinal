@@ -246,7 +246,7 @@ if(isset($_SESSION['usuario']))
                     </div>
                 </div>
 
-<<<<<<< Updated upstream
+
         <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
@@ -254,7 +254,7 @@ if(isset($_SESSION['usuario']))
                     <img class="img-fluid" src="../imagenes/Reporte.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
                     </a>
                     <h1>Reportes</h1>
-=======
+
                 <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
