@@ -1,5 +1,6 @@
 <?php 
 ob_start();
+session_start();
 
 include ('../configuracion/config.php');
 class envio
@@ -48,7 +49,7 @@ class envio
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_envio(0, '0', '0', '0', 0, '0', 0, 0, 0, 0, 0, 0, 0, 'S', @pn_respuesta);";
+		$consulta= "call sp_reporte_general_viaje('S', '0', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
@@ -144,7 +145,7 @@ class envio
 
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_rutas(0, '0', '0', '0', 'S2', @pn_respuesta);";
+		$consulta= "call sp_reporte_general_viaje('S2', '0', @pn_respuesta);";
 		$dt2= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt2;

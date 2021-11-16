@@ -39,14 +39,16 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
-  $resultado=$dt->num_rows;
+  $resultado=$dt2->num_rows;
   if($resultado>0){
     ?>
-      <center><h1>Lista de Viajes</h1></center>
+      <center>
+      <h1>Lista de Viajes</h1>
       <br>
-      
-                  <a href="excel.php"><button type="button" class="btn btn-primary" >Descargar Excel</button></a>
-                <br><br>
+      </center>
+                  <a href="exceldos.php"><button type="button" class="btn btn-primary" >Descargar Excel</button></a>
+                  <br><br>
+                
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <div class="table-responsive">
@@ -66,6 +68,9 @@ if(isset($_SESSION['usuario']))
               <td>Destino</td>
               <td>Vehiculo</td>
               <td>Placas</td>
+              <td>Tipo Adiciona</td>
+              <td>Placa</td>
+              <td>Num Economico</td>
               <td>Operador</td>
               <td>Tel Operador</td>
               <td>Whatsapp</td>
@@ -76,7 +81,7 @@ if(isset($_SESSION['usuario']))
               
             </thead>
       <?php
-          while ($row=mysqli_fetch_array($dt)) {
+          while ($row=mysqli_fetch_array($dt2)) {
             $id=$row['id_envio'];
             $codigo=$row['codigo_envio'];
             $fecha=$row['fecha_envio'];
@@ -93,6 +98,8 @@ if(isset($_SESSION['usuario']))
             $codigo_ruta=$row['codigo_ruta'];
             $tipo_vehiculo=$row['tipo_vehiculo'];
             $no_placa=$row['no_placa'];
+            $tipo=$row['tipo'];
+            $placa=$row['placa'];
             $nombre_piloto=$row['npiloto'];
             $telpiloto=$row['telpiloto'];
             $whatsapp=$row['whatsapp'];
@@ -100,7 +107,7 @@ if(isset($_SESSION['usuario']))
             $nombre_cuenta=$row['nombre_cuenta'];
             $numcuenta=$row['numcuenta'];
             $tipo_cuenta=$row['tipo_cuenta'];
-
+            $numero_economico=$row['numero_economico'];
             ?>
                   <tbody id="myTable">
                   <tr>
@@ -118,6 +125,9 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $destino?></td>
                     <td><?php echo $tipo_vehiculo?></td>
                     <td><?php echo $no_placa?></td>
+                    <td><?php echo $tipo?></td>
+                    <td><?php echo $placa?></td>
+                    <td><?php echo $numero_economico?></td>
                     <td><?php echo $nombre_piloto?></td>
                     <td><?php echo $telpiloto?></td>
                     <td><?php echo $whatsapp?></td>
@@ -135,7 +145,7 @@ if(isset($_SESSION['usuario']))
                 echo '</table>';
 
                 ?>
-              </div>
+                <div class="table-responsive">
                 
                 <!--<center>
                     <a href="../envio/agregar_envio.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>

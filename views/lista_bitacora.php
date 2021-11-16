@@ -46,7 +46,7 @@ if(isset($_SESSION['usuario']))
 
   if($resultado>0){
     ?>
-      <h1>Envios Autorizados **pendiente cambio en el procedimiento y la clase para agregar al usuario que hace los cambios**</h1>
+      <h1>Envios Autorizados </h1>
       <center>
       <h2>Lista de viajes</h2>
       </center>

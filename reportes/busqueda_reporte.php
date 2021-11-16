@@ -24,7 +24,7 @@ if(isset($_SESSION['usuario']))
 </head>
 <body >
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <a href="../views/secritaria.php">
+    <a href="../views/ViewAdministrador.php">
         <img src="../imagenes/logo.png" alt="HTML tutorial" style="width:52px;height:52px;">
     </a>
     <ul class="navbar-nav ml-auto">
@@ -51,7 +51,18 @@ if(isset($_SESSION['usuario']))
                         <a href="../envio/datos.php">-->
                         <img class="conimagen" id="conimg"src="../imagenes/reporteviajes.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
                     </a>
-                    <h1>Reporte de Viaje</h1>
+                    <h1>Reporte de Viaje  -Solo Vehiculo- </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
+            <div id="formContent"><!--contenedor-->
+                <div class="fadeIn first">
+                    <a href="lista_general_cajaseca.php">
+                    <img class="img-fluid" src="../imagenes/reportevehiculos.png" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
+                    </a>
+                    <h1>Reporte de Viaje Vehiculo/Caja Seca</h1>
                 </div>
             </div>
         </div>
@@ -88,19 +99,7 @@ if(isset($_SESSION['usuario']))
                 </div>
             </div>
         </div>        
-
-        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
-            <div id="formContent"><!--contenedor-->
-                <div class="fadeIn first">
-                    <a href="Clientes.php">
-                    <img class="img-fluid" src="../imagenes/reportevehiculos.png" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
-                    </a>
-                    <h1>Reporte de Vehiculos</h1>
-                </div>
-            </div>
-        </div>
-
-        
+    
 
         
     </div>
