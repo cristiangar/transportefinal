@@ -1,5 +1,5 @@
 <?php
-include_once("../controller/envio.php");
+session_start();
 if(isset($_SESSION['usuario']))
 {
     $rol=$_SESSION['rol'];
@@ -8,12 +8,11 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Viajes</title>
+    <title>Vehiculos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="../css/index.css" rel="stylesheet"/>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/index.js"></script>
@@ -39,57 +38,48 @@ if(isset($_SESSION['usuario']))
 </nav>
 <div class="container-fluid">
 <?php
+  include_once("../controller/lista_viajes_piloto.php");
   $resultado=$dt->num_rows;
   if($resultado>0){
     ?>
       <h1>Lista de Viajes</h1>
       <br>
-      <div class="container mt-3">
+      <div class="container-fluid">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
               <td>Codigo envio</td>
-              <td>Fecha envio</td>
-              <td>Cliente</td>
-              <td>Telefono cliente</td>
-              <td>Estado envio</td>
-              <td>Imprimir</td>
-              <td>Detalle del envio</td>
-              <td>Eliminar</td>
+              <td>Origen</td>
+              <td>Destino</td>
+              <td>Empresa</td>
+              <td>Telefono 1</td>
+              <td>Telefono 2</td>
+              <td>Estado del viaje</td>
+              <td>Iniciar</td>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
-            $id=$row['id_envio'];
-            $codigo=$row['codigo_envio'];
-            $fecha=$row['fecha_envio'];
-            $cliente=$row['empresa'];
-            $telefono=$row['tel'];
-            $estado=$row['estado_envio'];
+                $id_envio=$row['id_envio'];
+                $codigo=$row['codigo_envio'];
+                $origen=$row['origen'];
+                $destino=$row['destino'];
+                $empresa=$row['empresa'];
+                $tel1=$row['telefono_1'];
+                $tel2=$row['telefono_2'];
+                $estado=$row['estado_envio'];
+                $estadobit=$row['estado_activo'];
             ?>
                   <tbody id="myTable">
                   <tr>
-                    <td><?php echo $codigo?></td>
-                    <td><?php echo $fecha?></td>
-                    <td><?php echo $cliente?></td>
-                    <td><?php echo $telefono?></td>
-                    <td><?php echo $estado?></td>
-                    <?php 
-                      if($estado=="Autorizado" or $estado=="En Ruta"){
-                        ?>
-                        <td><center><a href="../reportes/renvio.php?id=<?php echo $id;?>" class="text-white" target='_blank'><i class="fas fa-print">Imprimir </i></a></center></td>
-                        <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>    
-                        <?php
-                      }
-                      else{
-                        ?>
-                        <td></td>
-                        <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
-                        <?php
-
-                      }
-                    ?>
-                    <td><center><a href="../controller/envio.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
+                    <td><?php echo $codigo;?></td>
+                    <td><?php echo $origen;?></td>
+                    <td><?php echo $destino;?></td>
+                    <td><?php echo $empresa;?></td>
+                    <td><?php echo $tel1;?></td>
+                    <td><?php echo $tel2;?></td>
+                    <td><?php echo $estado;?></td>
+                    <td><center><a href="../controller/lista_viajes_piloto.php?id=<?php echo $id_envio;?>"><button type="button" class="btn btn-info">Iniciar</button></a></center></td>
                   </tr>
                  </tbody>
             <?php
@@ -103,13 +93,15 @@ if(isset($_SESSION['usuario']))
                 echo  '<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>';
                 echo'</tfoot>';
                 echo '</table>';
-
                 ?>
-                <center>
-                    <a href="../envio/agregar_envio.php"><button type="button" class="btn btn-success" >Agregar Nuevo</button></a>
-                    <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
-                </center>
+                    <center>
+                    <br>
+      
+                    <a href="../views/ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+                    </center>
                 <?php
+
+
   }
   else{
     ?> 
@@ -121,8 +113,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
-      <a href="../envio/agregar_envio.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
-      <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+      <a href="../views/ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
   }
