@@ -34,9 +34,9 @@ class envio
 		}
 		//
 		$texto=$res['@pn_respuesta'];
-		echo'<script language = javascript>
+		/*echo'<script language = javascript>
 						alert("'.$texto.'")
-						self.location="../views/listaviajes.php" </script>';
+						self.location="../views/listaviajes.php" </script>';*/
 						
 
 
