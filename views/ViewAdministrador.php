@@ -68,10 +68,21 @@ if(isset($_SESSION['usuario']))
                 <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
-                            <a href="../Pilos/listaviajes.php?id&ver">
-                            <img class="img-fluid" src="../imagenes/envio_2.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                            <a href="../Pilos/Iniciar_terminar.php?id&ver">
+                            <img class="img-fluid" src="../imagenes/envio_2.jpg" id="icon" alt="User Icon" style="max-width:100%;width:auto;height:auto;">
                             </a>
-                            <h1>Iniciar,Terminar,y gastos del viajes</h1>
+                            <h1>Iniciar y terminar viajes</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
+                    <div id="formContent"><!--contenedor-->
+                        <div class="fadeIn first">
+                                <a href="../Pilos/listaviajes.php?id&ver">
+                                <img class="conimagen" id="conimg"src="../imagenes/img_gastos.png" id="icon" alt="User Icon" style="max-width:70%;width:auto;height:auto;"/>
+                            </a>
+                            <h1>Gastos de pilotos por viaje</h1>
                         </div>
                     </div>
                 </div>
@@ -91,7 +102,7 @@ if(isset($_SESSION['usuario']))
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
                             <a href="lista_clientes.php">
-                            <img class="img-fluid" src="../imagenes/clientes.png" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
+                            <img class="img-fluid" src="../imagenes/clientes.png" id="icon" alt="User Icon" style="max-width:48%;width:auto;height:auto;">
                             </a>
                             <h1>Clientes</h1>
                         </div>
@@ -114,7 +125,7 @@ if(isset($_SESSION['usuario']))
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
                             <a href="lista_receptor.php">
-                            <img class="img-fluid" src="../imagenes/receptor.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                            <img class="img-fluid" src="../imagenes/receptor.jpg" id="icon" alt="User Icon" style="max-width:65%;width:auto;height:auto;">
                             </a>
                             <h1>Receptor</h1>
                         </div>
@@ -160,7 +171,7 @@ if(isset($_SESSION['usuario']))
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
                             <a href="lista_encabezados.php">
-                            <img class="img-fluid" src="../imagenes/reporte.png" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                            <img class="img-fluid" src="../imagenes/reporte.png" id="icon" alt="User Icon" style="max-width:68%;width:auto;height:auto;">
                             </a>
                             <h1>Generar Cuenta Por Cobrar</h1>
                         </div>
@@ -171,7 +182,7 @@ if(isset($_SESSION['usuario']))
                 <div id="formContent"><!--contenedor-->
                     <div class="fadeIn first">
                         <a href="lista_cuentas_por_cobrar.php">
-                        <img class="img-fluid" src="../imagenes/cxc.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                        <img class="img-fluid" src="../imagenes/cxc.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
                         </a>
                         <h1>Estado cuenta del cliente</h1>
                     </div>
@@ -182,7 +193,7 @@ if(isset($_SESSION['usuario']))
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
                             <a href="ListaPendienteDeposito.php">
-                            <img class="img-fluid" src="../imagenes/deposito.png" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                            <img class="img-fluid" src="../imagenes/deposito.png" id="icon" alt="User Icon" style="max-width:70%;width:auto;height:auto;">
                             </a>
                             <h1>Viaje pendiente de depositar</h1>
                         </div>
@@ -194,7 +205,7 @@ if(isset($_SESSION['usuario']))
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
                             <a href="ListaPagoPilotos.php">
-                            <img class="img-fluid" src="../imagenes/pagar.png" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                            <img class="img-fluid" src="../imagenes/pagar.png" id="icon" alt="User Icon" style="max-width:80%;width:auto;height:auto;">
                             </a>
                             <h1>Pago Pilotos</h1>
                         </div>
@@ -207,7 +218,7 @@ if(isset($_SESSION['usuario']))
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
                             <a href="lista_empleados.php">
-                            <img class="img-fluid" src="../imagenes/personal.png" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                            <img class="img-fluid" src="../imagenes/personal.png" id="icon" alt="User Icon" style="max-width:75%;width:auto;height:auto;">
                             </a>
                             <h1>Personal</h1>
                         </div>
@@ -218,7 +229,7 @@ if(isset($_SESSION['usuario']))
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
                             <a href="ViewsOtros.php">
-                            <img class="img-fluid" src="../imagenes/Otros.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                            <img class="img-fluid" src="../imagenes/Otros.jpg" id="icon" alt="User Icon" style="max-width:95%;width:auto;height:auto;">
                             </a>
                             <h1>Otros</h1>
                         </div>
@@ -241,7 +252,7 @@ if(isset($_SESSION['usuario']))
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
                     <a href="../reportes/busqueda_reporte.php">
-                    <img class="img-fluid" src="../imagenes/Reporte.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                    <img class="img-fluid" src="../imagenes/Reporte.jpg" id="icon" alt="User Icon" style="max-width:85%;width:auto;height:auto;">
                     </a>
                     <h1>Reportes</h1>
                 </div>
@@ -252,7 +263,7 @@ if(isset($_SESSION['usuario']))
                     <div id="formContent"><!--contenedor-->
                         <div class="fadeIn first">
                             <a href="../mantenimientovehiculos/lista_vehiculos.php">
-                            <img class="img-fluid" src="../imagenes/serviciocarro.jpg" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
+                            <img class="img-fluid" src="../imagenes/serviciocarro.jpg" id="icon" alt="User Icon" style="max-width:65%;width:auto;height:auto;">
                             </a>
                             <h1>Servicio de Vehiculos</h1>
                         </div>

@@ -58,8 +58,8 @@ if(isset($_SESSION['usuario']))
               <td>Telefono 1</td>
               <td>Telefono 2</td>
               <td>Estado del viaje</td>
-              <td>Ver gastos</td>
-              <td>Agregar Gastos</td>
+              <td>Iniciar</td>
+              <td>Terminar</td>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
@@ -87,21 +87,22 @@ if(isset($_SESSION['usuario']))
                     <?php 
                       if($estado=="Terminado"){
                         ?>
-                        <td><a href="lista_gastos.php?id_envio=<?php echo $id_envio;?>"><button type="button" class="btn btn-info">Ver Gastos</button></a></td>
-                        <td><a href="agregar_gasto.php?id_envio=<?php echo $id_envio;?>&d=<?php echo $_GET['id'];?>"><button type="button" class="btn btn-success">Agregar gastos</button></a></td>
+                        <td><center><a href="#"><button type="button" class="btn btn-warning" disable>Iniciar</button></a></center></td>
+                        <td><center><a href="#"><button type="button" class="btn btn-danger"disable>Terminar</button></a></center></td>
                         <?php
                       }
                       else{
                         if($estado=="En Ruta"){
                           ?>
-                          <td><a href="lista_gastos.php?id_envio=<?php echo $id_envio;?>"><button type="button" class="btn btn-info">Ver Gastos</button></a></td>
-                          <td><a href="agregar_gasto.php?id_envio=<?php echo $id_envio;?>&d=<?php echo $_GET['id'];?>"><button type="button" class="btn btn-success">Agregar gastos</button></a></td>
+
+                          <td><center><a href="#"><button type="button" class="btn btn-warning">Iniciar</button></a></center></td>
+                          <td><center><a href="../controller/lista_viajes_piloto.php?id=<?php echo $id_envio;?>&ter"><button type="button" class="btn btn-danger">Terminar</button></a></center></td>
                           <?php
                         }
                         else{
                           ?>
-                          <td><a href="#"><button type="button" class="btn btn-info">Ver Gastos</button></a></td>
-                          <td><a href="#"><button type="button" class="btn btn-success">Agregar gastos</button></a></td>
+                          <td><center><a href="../controller/lista_viajes_piloto.php?id=<?php echo $id_envio;?>"><button type="button" class="btn btn-warning">Iniciar</button></a></center></td>
+                          <td><center><a href="#"><button type="button" class="btn btn-danger"disable>Terminar</button></a></center></td>
                           <?php
                         }
                       }
