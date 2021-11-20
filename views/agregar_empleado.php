@@ -86,7 +86,7 @@ if(isset($_GET['id'])){
                 <br>
             <center>
                 <input type="submit" class="btn btn-success" value="Aceptar">
-                <a href="lista_receptor.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
+                <a href="lista_empleados.php"><button type="button" class="btn btn-warning" >Regresar</button></a>
                 <input type="submit" class="btn btn-danger" value="cancelar">
                 
             </center>
