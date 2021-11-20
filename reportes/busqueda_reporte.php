@@ -67,8 +67,8 @@ if(isset($_SESSION['usuario']))
             </div>
         </div>
 
-        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
-            <div id="formContent"><!--contenedor-->
+        <!--<div class="wrapper fadeInDown col-sm-4">efecto de caida
+            <div id="formContent">contenedor
                 <div class="fadeIn first">
                     <a href="Reportes.php?cliente">
                     <img class="img-fluid" src="../imagenes/reporteclientes.png" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
@@ -78,8 +78,8 @@ if(isset($_SESSION['usuario']))
             </div>
         </div>
 
-        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
-            <div id="formContent"><!--contenedor-->
+        <div class="wrapper fadeInDown col-sm-4">efecto de caida
+            <div id="formContent">contenedor
                 <div class="fadeIn first">
                     <a href="estados.php">
                     <img class="img-fluid" src="../imagenes/reporteejecutiva.png" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
@@ -89,8 +89,8 @@ if(isset($_SESSION['usuario']))
             </div>
         </div>
 
-        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
-            <div id="formContent"><!--contenedor-->
+        <div class="wrapper fadeInDown col-sm-4">efecto de caida
+            <div id="formContent">contenedor
                 <div class="fadeIn first">
                     <a href="bitacora.php">
                     <img class="img-fluid" src="../imagenes/reportepiloto.png" id="icon" alt="User Icon" style="max-width:50%;width:auto;height:auto;">
@@ -98,7 +98,7 @@ if(isset($_SESSION['usuario']))
                     <h1>Reporte de Pilotos</h1>
                 </div>
             </div>
-        </div>        
+        </div>    -->    
     
 
         

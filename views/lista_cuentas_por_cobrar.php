@@ -135,7 +135,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br>
       <a href="../envio/nuevo_encabezado.php"><button type="button" class="btn btn-success btn-lg" >Agregar Nuevo</button></a>
-      <a href="secritaria.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+      <a href="ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
   }
