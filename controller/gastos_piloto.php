@@ -12,14 +12,12 @@ if (isset($_GET['id_envio']))
     }
     else
     {
-        if(isset($_GET['id']) and isset($_GET['mod'])){
-            /*$id=$_GET['id'];
-            $origen=$_POST['origen'];
-            $destino=$_POST['destino'];
-            $cond=$_POST['codigo'];
-
-            $au =new rutas();
-            $au->Modificar($id,$origen,$destino,$cond);*/
+        if(isset($_GET['id_envio']) and isset($_GET['mod'])){
+          
+            $id_gasto=$_GET['id_envio'];
+            $id_envio=$_GET['mod'];
+            $au =new GastoPiloto();
+            $au->Modificar($id_gasto,$id_envio);
 
         }
         else{

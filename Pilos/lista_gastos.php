@@ -53,6 +53,7 @@ if(isset($_SESSION['usuario']))
                 <td>Descripción</td>
                 <td>Precio</td>
                 <td>Estado</td>
+                <td>Cancelar</td>
                 <td>Eliminar</td>
             </thead>
       <?php
@@ -72,6 +73,18 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $descripcion;?></td>
                     <td><?php echo $moneda." ".$precio;?></td>
                     <td><?php echo $estado;?></td>
+                    <?php
+                    if($estado=="Cancelado"){
+                      ?>
+                      <td><a href="#"><button type="button" class="btn btn-success">Cancelar</button></a></td>
+                      <?php
+                    }
+                    else{
+                      ?>
+                      <td><a href="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&mod=<?php echo $id_envio;?>"><button type="button" class="btn btn-success">Cancelar</button></a></td>
+                      <?php
+                    }
+                    ?>
                     <td><a href="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&es=<?php echo $id_envio;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
                   </tr>
                  </tbody>

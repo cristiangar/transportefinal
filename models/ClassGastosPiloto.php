@@ -79,11 +79,11 @@ class GastoPiloto
 
 				
 
-	public function Modificar($id,$origen,$destino,$codigo)
+	public function Modificar($id_gasto,$id_envio)
 	{
 		$bd = new datos();
 		$bd->conectar();
-		$consulta= "call sp_rutas($id, '$origen', '$codigo', '$destino', 'U', @pn_respuesta);";
+		$consulta= "call sp_gastos_piloto($id_gasto, '0', '0', 0, '0', 0, 0, 'D2', @pn_respuesta);";
 		$dt= mysqli_query($bd->objetoconexion,$consulta);
 
 		$salida="SELECT @pn_respuesta";
@@ -94,11 +94,12 @@ class GastoPiloto
 		$res=mysqli_fetch_array($consultar);
 		//
 		$texto=$res['@pn_respuesta'];
-		echo'<script language = javascript>
-						alert("'.$texto.'")
-						self.location="../views/lista_rutas.php" </script>';
-
-
+		?>
+		<script language = javascript>
+						alert("<?php echo $texto;?>")
+						self.location="../Pilos/lista_gastos.php?id_envio=<?php echo $id_envio;?>" 
+		</script>
+		<?php
 	}
 
 	
