@@ -47,9 +47,11 @@ if(isset($_SESSION['usuario']))
       <div class="container-fluid">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
+      <div class="" style="overflow-x:auto;">
       <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
             <thead>
               <td>Codigo envio</td>
+              <td>Piloto</td>
               <td>Origen</td>
               <td>Destino</td>
               <td>Empresa</td>
@@ -59,10 +61,12 @@ if(isset($_SESSION['usuario']))
               <td>Ver gastos</td>
               <td>Agregar Gastos</td>
               <td>Iniciar</td>
+              <td>Terminar</td>
             </thead>
       <?php
           while ($row=mysqli_fetch_array($dt)) {
                 $id_envio=$row['id_envio'];
+                $piloto=$row['piloto'];
                 $codigo=$row['codigo_envio'];
                 $origen=$row['origen'];
                 $destino=$row['destino'];
@@ -75,6 +79,7 @@ if(isset($_SESSION['usuario']))
                   <tbody id="myTable">
                   <tr>
                     <td><?php echo $codigo;?></td>
+                    <td><?php echo $piloto;?></td>
                     <td><?php echo $origen;?></td>
                     <td><?php echo $destino;?></td>
                     <td><?php echo $empresa;?></td>
@@ -85,23 +90,26 @@ if(isset($_SESSION['usuario']))
                       if($estado=="Terminado"){
                         ?>
                         <td><a href="lista_gastos.php?id_envio=<?php echo $id_envio;?>"><button type="button" class="btn btn-info">Ver Gastos</button></a></td>
-                        <td><a href="agregar_gasto.php?id_envio=<?php echo $id_envio;?>&d=<?php echo $_GET['id'];?>"><button type="button" class="btn btn-success">Gastos</button></a></td>
-                        <td><a href="#"><button type="button" class="btn btn-danger" disable>Iniciar</button></a></td>
+                        <td><a href="agregar_gasto.php?id_envio=<?php echo $id_envio;?>&d=<?php echo $_GET['id'];?>"><button type="button" class="btn btn-success">Agregar gastos</button></a></td>
+                        <td><a href="#"><button type="button" class="btn btn-warning" disable>Iniciar</button></a></td>
+                        <td><center><a href="#"><button type="button" class="btn btn-danger"disable>Terminar</button></a></center></td>
                         <?php
                       }
                       else{
-                        if($estado=="Terminado" or $estado=="En Ruta"){
+                        if($estado=="En Ruta"){
                           ?>
-                          <td><a href="agregar_gasto.php?id_envio=<?php echo $id_envio;?>&d=<?php echo $_GET['id'];?>"><button type="button" class="btn btn-info">Ver Gastos</button></a></td>
-                          <td><a href="agregar_gasto.php?id_envio=<?php echo $id_envio;?>&d=<?php echo $_GET['id'];?>"><button type="button" class="btn btn-success">Gastos</button></a></td>
-                          <td><center><a href="#"><button type="button" class="btn btn-danger">Iniciar</button></a></center></td>
+                          <td><a href="lista_gastos.php?id_envio=<?php echo $id_envio;?>"><button type="button" class="btn btn-info">Ver Gastos</button></a></td>
+                          <td><a href="agregar_gasto.php?id_envio=<?php echo $id_envio;?>&d=<?php echo $_GET['id'];?>"><button type="button" class="btn btn-success">Agregar gastos</button></a></td>
+                          <td><center><a href="#"><button type="button" class="btn btn-warning">Iniciar</button></a></center></td>
+                          <td><center><a href="../controller/lista_viajes_piloto.php?id=<?php echo $id_envio;?>&ter"><button type="button" class="btn btn-danger">Terminar</button></a></center></td>
                           <?php
                         }
                         else{
                           ?>
                           <td><a href="#"><button type="button" class="btn btn-info">Ver Gastos</button></a></td>
-                          <td><a href="#"><button type="button" class="btn btn-success">Gastos</button></a></td>
-                          <td><center><a href="../controller/lista_viajes_piloto.php?id=<?php echo $id_envio;?>"><button type="button" class="btn btn-danger">Iniciar</button></a></center></td>
+                          <td><a href="#"><button type="button" class="btn btn-success">Agregar gastos</button></a></td>
+                          <td><center><a href="../controller/lista_viajes_piloto.php?id=<?php echo $id_envio;?>"><button type="button" class="btn btn-warning">Iniciar</button></a></center></td>
+                          <td><center><a href="#"><button type="button" class="btn btn-danger"disable>Terminar</button></a></center></td>
                           <?php
                         }
                       }
@@ -120,6 +128,8 @@ if(isset($_SESSION['usuario']))
                 echo'</tfoot>';
                 echo '</table>';
                 ?>
+
+      </div>
                     <center>
                     <br>
       

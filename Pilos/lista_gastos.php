@@ -90,7 +90,7 @@ if(isset($_SESSION['usuario']))
                     <center>
                     <br>
       
-                    <a href="../views/ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+                    <a href="listaviajes.php?id&ver"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
                     </center>
                 <?php
 
@@ -106,7 +106,7 @@ if(isset($_SESSION['usuario']))
       <br>
       <br><br><br><br>
       <h1>No hay datos ingresados</h1>
-      <a href="../views/ViewAdministrador.php"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
+      <a href="listaviajes.php?id&ver"><button type="button" class="btn btn-warning btn-lg" >Regresar</button></a>
     </center>
     <?php
   }

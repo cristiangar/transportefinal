@@ -183,7 +183,18 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
                             <input type="text"  name="idPiloto" value="<?php echo $id_pilotos;?>" hidden>
                             <input type="text"  name="idVehiculo" value="<?php echo $id_vehiculo; ?>" hidden>
                             <input type="text"  name="idCaja" value="<?php echo   $id_caja; ?>" hidden>
-
+                                <div class="col-sm-4">
+                                    <label for="">Tipo Moneda</label>
+                                    <select name="id_moneda" id="" class="form-control">        
+                                    <?php
+                                        while($row=mysqli_fetch_array($dt2)){
+                                            $valor=$row['id_tipo_moneda'];
+                                            $texto=$row['tipo'];
+                                            echo '<option  value="'.$valor.'">'.$texto.'</option>';
+                                        }
+                                    ?>
+                                    </select>
+                                </div>
                                 <div class="col-sm-4">
                                     <label for="">Renta de caja</label>
                                     <input type="number" step="0.01" class="form-control" value="0.00"  name="renta">
@@ -201,16 +212,8 @@ if(isset($_GET['id']) and isset($_GET['detalle']) ){
                                     <input type="number" step="0.01" class="form-control" value="0.00" name="pendiente">
                                 </div>
                                 <div class="col-sm-4">
-                                    <label for="">Tipo Moneda</label>
-                                    <select name="id_moneda" id="" class="form-control">        
-                                    <?php
-                                        while($row=mysqli_fetch_array($dt2)){
-                                            $valor=$row['id_tipo_moneda'];
-                                            $texto=$row['tipo'];
-                                            echo '<option  value="'.$valor.'">'.$texto.'</option>';
-                                        }
-                                    ?>
-                                    </select>
+                                    <label for="">Total A Pagar</label>
+                                    <input type="number" step="0.01" class="form-control" value="0.00"  name="total_pagar">
                                 </div>
                             </div>
                             <br>

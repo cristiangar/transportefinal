@@ -14,7 +14,7 @@ if (isset($_GET['id']))
     else
     {
         if(isset($_GET['id']) and isset($_GET['ver'])){
-            $id=$_GET['id'];
+            $id=0;
             $ruta=new envio_piloto();
             $dt=$ruta->Ver($id);
         }

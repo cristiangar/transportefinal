@@ -45,14 +45,12 @@ class GastoPiloto
 
     public function VerMoneda()
 	{
-
 		$db = new datos();
 		$db->conectar();
 		$consulta= "call sp_tipo_moneda(0, '0', 0, 'S', @pn_respuesta);";
 		$dt= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt;
-
 	}
 	public function Eliminar($id,$idenvio)
 	{

@@ -74,21 +74,8 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $cliente?></td>
                     <td><?php echo $telefono?></td>
                     <td><?php echo $estado?></td>
-                    <?php 
-                      if($estado=="Autorizado" or $estado=="En Ruta"){
-                        ?>
-                        <td><center><a href="../reportes/renvio.php?id=<?php echo $id;?>" class="text-white" target='_blank'><i class="fas fa-print">Imprimir </i></a></center></td>
-                        <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>    
-                        <?php
-                      }
-                      else{
-                        ?>
-                        <td></td>
+                    <td><center><a href="../reportes/renvio.php?id=<?php echo $id;?>" class="text-white" target='_blank'><i class="fas fa-print">Imprimir </i></a></center></td>
                         <td><center><a href="detalle_viaje.php?id=<?php echo $id?>&detalle"><button type="button" class="btn btn-info">Detalle</button></a></center></td>
-                        <?php
-
-                      }
-                    ?>
                     <td><center><a href="../controller/envio.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
                   </tr>
                  </tbody>

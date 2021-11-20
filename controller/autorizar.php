@@ -35,7 +35,7 @@ else
         $combustible=$_POST['gas'];
         $adelanto=$_POST['adelanto'];
         $pendiente=$_POST['pendiente'];
-        $total=$adelanto+$pendiente;
+        $total=$_POST['total_pagar'];
         $id_moneda=$_POST['id_moneda'];
         $id_piloto=$_POST['idPiloto'];
         $id_vehiculo=$_POST['idVehiculo'];
