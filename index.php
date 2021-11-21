@@ -26,7 +26,7 @@ if(isset($_GET['error']))
             </div>
             <form method="POST" action="controller/login/login.php">
                 <input type="text" id="login" class="fadeIn second" name="usr" placeholder="Usuario">
-                <input type="text" id="password" class="fadeIn third" name="pwd" placeholder="password">
+                <input type="password" id="password" class="fadeIn third" name="pwd" placeholder="password">
                 <input type="submit" class="fadeIn fourth" value="Log In">    
             </form>
         </div>
@@ -43,7 +43,7 @@ else{
             </div>
             <form method="POST" action="controller/login/login.php">
                 <input type="text" id="login" class="fadeIn second" name="usr" placeholder="Usuario">
-                <input type="text" id="password" class="fadeIn third" name="pwd" placeholder="password">
+                <input type="password" id="password" class="fadeIn third" name="pwd" placeholder="password">
                 <input type="submit" class="fadeIn fourth" value="Log In">    
             </form>
         </div>
