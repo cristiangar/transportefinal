@@ -101,6 +101,22 @@ class GastoPiloto
 		</script>
 		<?php
 	}
+	public function pagar_todo($id_gasto,$id_envio)
+	{
+		$bd = new datos();
+		$bd->conectar();
+		$consulta= "call sp_gastos_piloto($id_gasto, '0', '0', 0, '0', 0, 0, 'D2', @pn_respuesta);";
+		$dt= mysqli_query($bd->objetoconexion,$consulta);
+
+		$salida="SELECT @pn_respuesta";
+		$consultar=mysqli_query($bd->objetoconexion,$salida);
+		
+		$bd->desconectar();
+
+		$res=mysqli_fetch_array($consultar);
+		//
+		$texto=$res['@pn_respuesta'];
+	}
 
 	
 }

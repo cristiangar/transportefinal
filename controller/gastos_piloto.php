@@ -13,12 +13,10 @@ if (isset($_GET['id_envio']))
     else
     {
         if(isset($_GET['id_envio']) and isset($_GET['mod'])){
-          
             $id_gasto=$_GET['id_envio'];
             $id_envio=$_GET['mod'];
             $au =new GastoPiloto();
             $au->Modificar($id_gasto,$id_envio);
-
         }
         else{
             $id = $_GET['id_envio'];
@@ -54,6 +52,20 @@ else
     }
     else
     {
+        if(isset($_POST['idop'])){
+            foreach ($_POST['idop'] as $valor) {//foreach para recuperar los datos del checkbox $valor es la variable que trae los id 
+                $id_envio=$_POST['idenvio'];
+                $au =new GastoPiloto();
+                $au->Modificar($valor,$id_envio);
+            }
+            $id_e=$_POST['idenvio'];
+            ?>
+            	<script language = javascript>
+						alert("<?php echo $texto;?>")
+						self.location="../Pilos/lista_gastos.php?id_envio=<?php echo $id_e;?>" 
+		        </script>
+            <?php
+        }
         $gasto=new GastoPiloto();
         $dt=$gasto->VerMoneda();
     }

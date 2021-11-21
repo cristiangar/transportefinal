@@ -8,7 +8,7 @@ if(isset($_SESSION['usuario']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vehiculos</title>
+    <title>Gastos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,59 +47,76 @@ if(isset($_SESSION['usuario']))
       <div class="container-fluid">
       <input class="form-control" id="myInput" type="text" placeholder="buscar..">
       <br>
-      <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
-            <thead>
-                <td>Fecha</td>
-                <td>Descripción</td>
-                <td>Precio</td>
-                <td>Estado</td>
-                <td>Cancelar</td>
-                <td>Eliminar</td>
-            </thead>
-      <?php
-          while ($row=mysqli_fetch_array($dt)) {
-                    $id_envio=$row['id_envio'];
-                    $id_gasto_del_piloto=$row['id_gastos_del_piloto'];
-                    $fecha=$row['fecha_del_gasto'];
-                    $descripcion=$row['descripcion'];
-                    $precio=$row['precio'];
-                    $estado=$row['estado_del_gasto'];
-                    $moneda=$row['tipo'];
-
-            ?>
-                  <tbody id="myTable">
-                  <tr>
-                    <td><?php echo $fecha;?></td>
-                    <td><?php echo $descripcion;?></td>
-                    <td><?php echo $moneda." ".$precio;?></td>
-                    <td><?php echo $estado;?></td>
-                    <?php
-                    if($estado=="Cancelado"){
-                      ?>
-                      <td><a href="#"><button type="button" class="btn btn-success">Cancelar</button></a></td>
-                      <?php
-                    }
-                    else{
-                      ?>
-                      <td><a href="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&mod=<?php echo $id_envio;?>"><button type="button" class="btn btn-success">Cancelar</button></a></td>
-                      <?php
-                    }
-                    ?>
-                    <td><a href="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&es=<?php echo $id_envio;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
-                  </tr>
-                 </tbody>
+        <form action="../controller/gastos_piloto.php" method="POST">
+              <table class="table table-dark table-striped table-hover table-responsive-sm border="1" id="tabla_paginada">
+                  <thead>
+                      <td>Fecha</td>
+                      <td>Descripción</td>
+                      <td>Precio</td>
+                      <td>Estado</td>
+                      <td>Seleccionar</td>
+                      <td>Cancelar</td>
+                      <td>Eliminar</td>
+                  </thead>
             <?php
+            $total=0;
+                while ($row=mysqli_fetch_array($dt)) {
+                          $id_envio=$row['id_envio'];
+                          $id_gasto_del_piloto=$row['id_gastos_del_piloto'];
+                          $fecha=$row['fecha_del_gasto'];
+                          $descripcion=$row['descripcion'];
+                          $precio=$row['precio'];
+                          $estado=$row['estado_del_gasto'];
+                          $moneda=$row['tipo'];
+                          if($estado!="Cancelado"){
+                            $total=$total+$precio;
+                          }
 
-          }
-               echo '<tfoot>';
-                echo  '<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>';
-                echo  '<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>';
-                echo  '<td id="indicador_paginas"></td>';
-                echo  '<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>';
-                echo  '<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>';
-                echo'</tfoot>';
-                echo '</table>';
-                ?>
+                  ?>
+                        <tbody id="myTable">
+                        <tr>
+                          <td><?php echo $fecha;?></td>
+                          <td><?php echo $descripcion;?></td>
+                          <td><?php echo $moneda." ".$precio;?></td>
+                          <td><?php echo $estado;?></td>
+                          <?php
+                          if($estado=="Cancelado"){
+                            ?>
+                            <td></td>
+                            <td><a href="#"><button type="button" class="btn btn-success">Cancelar</button></a></td>
+                            <?php
+                          }
+                          else{
+                            ?>
+                            <td><input type="checkbox"  name="idop[]" value="<?php echo $id_gasto_del_piloto;?>"></td>
+                            <input type="text" name="idenvio" value="<?php echo $id_envio;?>"hidden>
+                            <td><a href="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&mod=<?php echo $id_envio;?>"><button type="button" class="btn btn-success">Cancelar</button></a></td>
+                            <?php
+                          }
+                          ?>
+                          <td><a href="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&es=<?php echo $id_envio;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                        </tr>
+                      </tbody>
+                  <?php
+
+                }
+                    echo '<tfoot>';
+                      echo  '<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>';
+                      echo  '<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>';
+                      echo  '<td id="indicador_paginas"></td>';
+                      echo  '<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>';
+                      echo  '<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>';
+                      echo'</tfoot>';
+                      echo '</table>';
+                      ?>
+        <input type="submit" class="btn btn-success" value="Pagar todo">
+        </form>
+        <?php
+        if(isset($_POST['id'])){
+          $arreglo=$_POST['id'];
+          var_dump($arreglo);
+        }
+        ?>
                     <center>
                     <br>
       
