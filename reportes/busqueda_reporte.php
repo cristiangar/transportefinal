@@ -46,20 +46,20 @@ if(isset($_SESSION['usuario']))
             <div id="formContent"><!--contenedor-->
                 <div class="fadeIn first">
                      
-                        <a href="lista_general.php">
+                        <a href="lista_general_cajaseca.php">
                         <!--<a href="excel.php"><button type="button" class="btn btn-primary" >Descargar Excel</button></a>
                         <a href="../envio/datos.php">-->
                         <img class="conimagen" id="conimg"src="../imagenes/reporteviajes.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
                     </a>
-                    <h1>Reporte de Viaje  -Solo Vehiculo- </h1>
+                    <h1>Reporte de Viaje </h1>
                 </div>
             </div>
         </div>
 
-        <div class="wrapper fadeInDown col-sm-4"><!--efecto de caida-->
-            <div id="formContent"><!--contenedor-->
+        <!--<div class="wrapper fadeInDown col-sm-4">
+            <div id="formContent">
                 <div class="fadeIn first">
-                    <a href="lista_general_cajaseca.php">
+                    <a href="lista_general.php">
                     <img class="img-fluid" src="../imagenes/reportevehiculos.png" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;">
                     </a>
                     <h1>Reporte de Viaje Vehiculo/Caja Seca</h1>
@@ -67,7 +67,7 @@ if(isset($_SESSION['usuario']))
             </div>
         </div>
 
-        <!--<div class="wrapper fadeInDown col-sm-4">efecto de caida
+        <div class="wrapper fadeInDown col-sm-4">efecto de caida
             <div id="formContent">contenedor
                 <div class="fadeIn first">
                     <a href="Reportes.php?cliente">

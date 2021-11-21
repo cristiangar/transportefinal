@@ -81,9 +81,40 @@ $resultado=$dt2->num_rows;
                     <td><?php echo $destino?></td>
                     <td><?php echo $tipo_vehiculo?></td>
                     <td><?php echo $no_placa?></td>
-                    <td><?php echo $tipo?></td>
-                    <td><?php echo $placa?></td>
-                    <td><?php echo $numero_economico?></td>
+                    <?php
+                      if(empty($tipo))
+                      {
+                        ?>
+                        <td>N/A</td>
+                        <?php
+                      }  
+                      else {
+                        ?>
+                        <td><?php echo $tipo?></td>
+                        <?php
+                      }
+                      if(empty($placa))
+                      {
+                        ?>
+                        <td>N/A</td>
+                        <?php
+                      }
+                      else{
+                        ?>
+                        <td><?php echo $placa?></td>
+                        <?php
+                      }
+                      if(empty($numero_economico)){
+                        ?>
+                        <td>N/A</td>
+                        <?php
+                      }
+                      else{
+                        ?>
+                        <td><?php echo $numero_economico?></td>
+                        <?php
+                      }
+                    ?>
                     <td><?php echo $nombre_piloto?></td>
                     <td><?php echo $telpiloto?></td>
                     <td><?php echo $whatsapp?></td>
