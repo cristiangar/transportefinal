@@ -77,9 +77,18 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $fecha;?></td>
                     <td><?php echo $descripcion;?></td>
                     <td><?php echo $abono;?></td>
-                    <td><center><a href="../controller/abonos.php?id=<?php echo $id_abono;?>&es=<?php echo $id;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>     
+                    <td><center><button type="button" class="btn btn-danger"  onclick="alerta()">Eliminar</button></center></td>     
                   </tr>
                  </tbody>
+                          <script>
+                            function alerta()
+                            {
+                                var opcion = window.confirm("Esta seguro que desea eliminar los datos");
+                                if (opcion == true) {
+                                    self.location="../controller/abonos.php?id=<?php echo $id_abono;?>&es=<?php echo $id;?>"
+                                   } 
+                            }
+                        </script>
             <?php
 
           }

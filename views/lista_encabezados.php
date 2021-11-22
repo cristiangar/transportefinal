@@ -104,9 +104,18 @@ if(isset($_SESSION['usuario']))
                     
                     <td><center><a href="lista_detalle.php?id=<?php echo $id?>&envio=<?php echo $envio;?>&datos=<?php echo $comprimida;?>"><button type="button" class="btn btn-info">Detalles</button></a></center></td>
                     <td><center><a href="nuevo_detalle.php?id=<?php echo $id?>&tipo_moneda=<?php echo $tipo_moneda?>&id_moneda=<?php echo $id_moneda?>"><button type="button" class="btn btn-primary">Agregar Detalle</button></a></center></td>
-                    <td><a href="../controller/nuevo_encabezado.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                    <td><button type="button" class="btn btn-danger"  onclick="alerta()">Eliminar</button></td>
                   </tr>
                  </tbody>
+                          <script>
+                            function alerta()
+                            {
+                                var opcion = window.confirm("Esta seguro que desea eliminar los datos");
+                                if (opcion == true) {
+                                    self.location="../controller/nuevo_encabezado.php?id=<?php echo $id?>&es=E"
+                                   } 
+                            }
+                        </script>
             <?php
 
           }

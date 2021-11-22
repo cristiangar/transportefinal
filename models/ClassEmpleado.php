@@ -101,7 +101,7 @@ class empleado
         
 		$db = new datos();
 		$db->conectar();
-		$consulta= "call sp_rol_usuario(0, '0', 'S', @pn_respuesta);";
+		$consulta= "call sp_rol_usuario(0, '0', 'S2', @pn_respuesta);";
 		$dt2= mysqli_query($db->objetoconexion,$consulta);
 		$db->desconectar();
 		return $dt2;

@@ -94,8 +94,17 @@ if(isset($_SESSION['usuario']))
                             <?php
                           }
                           ?>
-                          <td><a href="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&es=<?php echo $id_envio;?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                          <td><button type="button" class="btn btn-danger"  onclick="alerta()">Eliminar</button></td>
                         </tr>
+                        <script>
+                            function alerta()
+                            {
+                                var opcion = window.confirm("Esta seguro que desea eliminar los datos");
+                                if (opcion == true) {
+                                    self.location="../controller/gastos_piloto.php?id_envio=<?php echo $id_gasto_del_piloto;?>&es=<?php echo $id_envio;?>"
+                                   } 
+                            }
+                        </script>
                       </tbody>
                   <?php
 

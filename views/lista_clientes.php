@@ -80,9 +80,18 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $correo?></td>
                     <td><?php echo $nit?></td>
                     <td><center><a href="nuevo_cliente.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><center><a href="../controller/cliente.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
+                    <td><center><button type="button" class="btn btn-danger"  onclick="alerta()">Eliminar</button></center></td>
                   </tr>
                  </tbody>
+                        <script>
+                            function alerta()
+                            {
+                                var opcion = window.confirm("Esta seguro que desea eliminar los datos");
+                                if (opcion == true) {
+                                    self.location="../controller/cliente.php?id=<?php echo $id?>&es=E"
+                                   } 
+                            }
+                        </script>
             <?php
 
           }

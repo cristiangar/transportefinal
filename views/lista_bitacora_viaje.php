@@ -81,9 +81,18 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $descripcion?></td>
                     
                     <td><center><a href="nueva_bitacora.php?id=<?php echo $id?>&mod=M&id2=<?php echo $id2?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><a href="../controller/bitacora.php?id2=<?php echo $id2?>&es=E&id=<?php echo $id?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                    <td><button type="button" class="btn btn-danger"  onclick="alerta()">Eliminar</button></td>  
                   </tr>
                  </tbody>
+                 <script>
+                            function alerta()
+                            {
+                                var opcion = window.confirm("Esta seguro que desea eliminar los datos");
+                                if (opcion == true) {
+                                    self.location="../controller/bitacora.php?id2=<?php echo $id2?>&es=E&id=<?php echo $id?>"
+                                   } 
+                            }
+                  </script>
             <?php
 
           }

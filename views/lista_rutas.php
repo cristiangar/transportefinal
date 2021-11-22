@@ -67,9 +67,18 @@ if(isset($_SESSION['usuario']))
                     <td><?php echo $origen?></td>
                     <td><?php echo $destino?></td>
                     <td><center><a href="agregar_ruta.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></center></td>
-                    <td><center><a href="../controller/rutas.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></center></td>
+                    <td><center><button type="button" class="btn btn-danger"  onclick="alerta()">Eliminar</button></center></td>
                   </tr>
                  </tbody>
+                          <script>
+                            function alerta()
+                            {
+                                var opcion = window.confirm("Esta seguro que desea eliminar los datos");
+                                if (opcion == true) {
+                                    self.location="../controller/rutas.php?id=<?php echo $id?>&es=E"
+                                   } 
+                            }
+                        </script>
             <?php
 
           }

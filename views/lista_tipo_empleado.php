@@ -64,9 +64,18 @@ if(isset($_SESSION['usuario']))
 
                     <td><?php echo $cargo?></td>
                     <td><a href="agregar_nuevo_tipo_empleado.php?id=<?php echo $id?>"><button type="button" class="btn btn-warning">Modificar</button></a></td>
-                    <td><a href="../controller/tipo_empleado.php?id=<?php echo $id?>&es=E"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                    <td><button type="button" class="btn btn-danger"  onclick="alerta()">Eliminar</button></td>
                   </tr>
                  </tbody>
+                 <script>
+                            function alerta()
+                            {
+                                var opcion = window.confirm("Esta seguro que desea eliminar los datos");
+                                if (opcion == true) {
+                                    self.location="../controller/tipo_empleado.php?id=<?php echo $id?>&es=E"
+                                   } 
+                            }
+                        </script>
             <?php
 
           }
