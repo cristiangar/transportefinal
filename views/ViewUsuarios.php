@@ -51,7 +51,7 @@ if(isset($_SESSION['usuario']))
                     <a href="lista_usuarios_piloto.php">
                         <img class="conimagen" id="conimg"src="../imagenes/chofer.jpg" id="icon" alt="User Icon" style="max-width:60%;width:auto;height:auto;"/>
                     </a>
-                    <h1>Usuarios de Piltos</h1>
+                    <h1>Usuarios de Pilotos</h1>
                 </div>
             </div>
         </div>
